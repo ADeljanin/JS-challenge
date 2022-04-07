@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #444;
+  background-image: url(../img/doodles.png);
+  height: 100vh;
+  padding: 2rem;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+/* Whole window */
+.app-window {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  gap: 3rem;
+  background-image: url(../img/dust_scratches.png);
+  box-shadow: 10px 30px 20px rgba(153, 145, 145, 0.2);
+  border-radius: 2rem;
+  padding: 4rem;
+  font-size: 1.5rem;
+  width: 60%;
+
+  &__users {
+    width: 100%;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__search {
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__avatar {
+    width: 20%;
+    height: auto;
+    border-radius: 10rem;
+  }
+
+  &__messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__send {
+    display: grid;
+    grid-template-columns: 9fr 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+  &__attach {
+    font-size: 4rem;
+    transform: rotate(45deg);
+    color: gray;
+  }
+
+  &__emotikon {
+    font-size: 4rem;
+
+    color: gray;
+  }
+}

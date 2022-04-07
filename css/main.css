@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #444;
+  background-image: url(../img/doodles.png);
+  height: 100vh;
+  padding: 2rem;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 90vh;
+}
+
+/* Whole window */
+.app-window {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2.5fr;
+      grid-template-columns: 1fr 2.5fr;
+  gap: 3rem;
+  background-image: url(../img/dust_scratches.png);
+  -webkit-box-shadow: 10px 30px 20px rgba(153, 145, 145, 0.2);
+          box-shadow: 10px 30px 20px rgba(153, 145, 145, 0.2);
+  border-radius: 2rem;
+  padding: 4rem;
+  font-size: 1.5rem;
+  width: 60%;
+}
+
+.app-window__users {
+  width: 100%;
+  border: 1px solid red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2rem;
+}
+
+.app-window__search {
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+}
+
+.app-window__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+}
+
+.app-window__avatar {
+  width: 20%;
+  height: auto;
+  border-radius: 10rem;
+}
+
+.app-window__messages {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.app-window__send {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 9fr 1fr 1fr 1fr;
+      grid-template-columns: 9fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.app-window__attach {
+  font-size: 4rem;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  color: gray;
+}
+
+.app-window__emotikon {
+  font-size: 4rem;
+  color: gray;
+}
+/*# sourceMappingURL=main.css.map */
