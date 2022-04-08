@@ -68,7 +68,33 @@
       "city": "McKenziehaven",
       "zipcode": "59590-4157"
     },
-    "messages": []
+    "messages": [
+      {
+        "type": "send",
+        "time": "2022-03-31T18:37:22.585Z",
+        "text": "Yo !"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "Wassup!"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:56.585Z",
+        "text": "Nothing. You?"
+      },
+      {
+        "type": "sent",
+        "time": "2022-03-31T18:39:12.585Z",
+        "text": "I am fine, thanks."
+      },
+      {
+        "type": "sent",
+        "time": "2022-03-31T18:40:35.585Z",
+        "text": "Nice sfdaf asdf asdf asdf a "
+      }
+    ]
   },
   {
     "id": 4,
@@ -81,7 +107,28 @@
       "city": "South Elvis",
       "zipcode": "53919-4257"
     },
-    "messages": []
+    "messages": [
+      {
+        "type": "send",
+        "time": "2022-03-31T18:37:22.585Z",
+        "text": "Good !"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "Hi Nigga !"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:56.585Z",
+        "text": "how are you"
+      },
+      {
+        "type": "sent",
+        "time": "2022-03-31T18:39:12.585Z",
+        "text": "game tomorrow? 🏀"
+      }
+    ]
   },
   {
     "id": 5,
@@ -94,7 +141,18 @@
       "city": "Roscoeview",
       "zipcode": "33263"
     },
-    "messages": []
+    "messages": [
+      {
+        "type": "send",
+        "time": "2022-03-31T18:37:22.585Z",
+        "text": "pool today?"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "Ok , at 17h 😎"
+      }
+    ]
   },
   {
     "id": 6,
@@ -107,7 +165,28 @@
       "city": "South Christy",
       "zipcode": "23505-1337"
     },
-    "messages": []
+    "messages": [
+      {
+        "type": "send",
+        "time": "2022-03-31T18:37:22.585Z",
+        "text": "some glasses for wine?"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "at IKEA"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:56.585Z",
+        "text": "down the street?"
+      },
+      {
+        "type": "sent",
+        "time": "2022-03-31T18:39:12.585Z",
+        "text": "yeeeees"
+      }
+    ]
   },
   {
     "id": 7,
@@ -120,7 +199,33 @@
       "city": "Howemouth",
       "zipcode": "58804-1099"
     },
-    "messages": []
+    "messages": [
+      {
+        "type": "send",
+        "time": "2022-03-31T18:37:22.585Z",
+        "text": "is there some hardware store near you?"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "yes, send me what you want"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:56.585Z",
+        "text": "some screws for my night cabinet"
+      },
+      {
+        "type": "sent",
+        "time": "2022-03-31T18:39:12.585Z",
+        "text": "send mm measures"
+      },
+      {
+        "type": "sent",
+        "time": "2022-03-31T18:40:35.585Z",
+        "text": "in a minute"
+      }
+    ]
   },
   {
     "id": 8,
@@ -133,7 +238,28 @@
       "city": "Aliyaview",
       "zipcode": "45169"
     },
-    "messages": []
+    "messages": [
+      {
+        "type": "send",
+        "time": "2022-03-31T18:37:22.585Z",
+        "text": "do you have charger for iPhone"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "no, but my neighbour does"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:56.585Z",
+        "text": "borrow it for me, for an hour"
+      },
+      {
+        "type": "sent",
+        "time": "2022-03-31T18:39:12.585Z",
+        "text": "ok"
+      }
+    ]
   },
   {
     "id": 9,
@@ -146,7 +272,23 @@
       "city": "Bartholomebury",
       "zipcode": "76495-3109"
     },
-    "messages": []
+    "messages": [
+      {
+        "type": "send",
+        "time": "2022-03-31T18:37:22.585Z",
+        "text": "Do you have some food at home, I couldn t find any fast food store"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "yeah, come over for some fresh club sandwich"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:56.585Z",
+        "text": "nice"
+      }
+    ]
   },
   {
     "id": 10,
@@ -159,6 +301,32 @@
       "city": "Lebsackbury",
       "zipcode": "31428-2261"
     },
-    "messages": []
+    "messages": [
+      {
+        "type": "send",
+        "time": "2022-03-31T18:37:22.585Z",
+        "text": "Hello !"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "Hi bro !"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:56.585Z",
+        "text": "wanna beer?"
+      },
+      {
+        "type": "sent",
+        "time": "2022-03-31T18:39:12.585Z",
+        "text": "why not? maybe 2!"
+      },
+      {
+        "type": "sent",
+        "time": "2022-03-31T18:40:35.585Z",
+        "text": "ofcourse 2, i'm there in a minute"
+      }
+    ]
   }
 ]

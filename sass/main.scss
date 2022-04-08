@@ -64,6 +64,10 @@ main {
     border-radius: 10rem;
   }
 
+  &__last-msg {
+    overflow: hidden;
+    color: grey;
+  }
   &__messages {
     display: flex;
     flex-direction: column;
@@ -91,4 +95,9 @@ main {
 
 .hidden {
   display: none;
+}
+
+.user-link {
+  text-decoration: none;
+  color: black;
 }
