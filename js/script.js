@@ -1,5 +1,8 @@
 "use strict";
 
+const appUsers = document.querySelector(".app-window__users");
+const appInfo = document.querySelector(".app-window__info");
+
 fetch("chat.json")
   .then((response) => response.json())
   .then((data) => {
@@ -24,12 +27,16 @@ fetch("chat.json")
 
       appUsers.insertAdjacentHTML("beforeend", html);
     });
+
+    // let currentItem = 0;
+
+    // window.addEventListener("DOMContentLoaded", function () {
+    //   let element = document.getElementById("hidden");
+    //   console.log(element);
+    //   // element.classList.add("hidden");
+    // });
   });
 
-// document.getElementById("#username").innerHTML = "Nigga";
-
-const appUsers = document.querySelector(".app-window__users");
-
-const displayUsers = function (mov) {
-  appUsers.innerHTML = "";
-};
+//Remove hardcoded element from HTML file
+let removeElement = document.getElementById("#hidden");
+removeElement.className += " hidden";

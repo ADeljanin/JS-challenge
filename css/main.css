@@ -119,4 +119,8 @@ main {
   font-size: 4rem;
   color: gray;
 }
+
+.hidden {
+  display: none;
+}
 /*# sourceMappingURL=main.css.map */
