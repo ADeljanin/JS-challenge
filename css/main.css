@@ -36,21 +36,20 @@ main {
 .app-window {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 2.5fr;
-      grid-template-columns: 1fr 2.5fr;
+  -ms-grid-columns: 1.5fr 2.5fr;
+      grid-template-columns: 1.5fr 2.5fr;
   gap: 3rem;
   background-image: url(../img/dust_scratches.png);
   -webkit-box-shadow: 10px 30px 20px rgba(153, 145, 145, 0.2);
           box-shadow: 10px 30px 20px rgba(153, 145, 145, 0.2);
   border-radius: 2rem;
-  padding: 4rem;
   font-size: 1.5rem;
   width: 60%;
+  height: 80vh;
 }
 
 .app-window__users {
   width: 100%;
-  border: 1px solid red;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -59,6 +58,10 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 2rem;
+  background-color: white;
+  height: 80vh;
+  overflow: auto;
+  padding: 4rem 2rem;
 }
 
 .app-window__search {
@@ -74,6 +77,7 @@ main {
       -ms-flex-align: center;
           align-items: center;
   gap: 2rem;
+  padding-left: 2rem;
 }
 
 .app-window__avatar {
@@ -93,6 +97,7 @@ main {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding: 4rem 2rem;
 }
 
 .app-window__send {

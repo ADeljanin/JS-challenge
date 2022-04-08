@@ -26,21 +26,24 @@ main {
 /* Whole window */
 .app-window {
   display: grid;
-  grid-template-columns: 1fr 2.5fr;
+  grid-template-columns: 1.5fr 2.5fr;
   gap: 3rem;
   background-image: url(../img/dust_scratches.png);
   box-shadow: 10px 30px 20px rgba(153, 145, 145, 0.2);
   border-radius: 2rem;
-  padding: 4rem;
   font-size: 1.5rem;
   width: 60%;
+  height: 80vh;
 
   &__users {
     width: 100%;
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    background-color: rgb(255, 255, 255);
+    height: 80vh;
+    overflow: auto;
+    padding: 4rem 2rem;
   }
 
   &__search {
@@ -52,6 +55,7 @@ main {
     display: flex;
     align-items: center;
     gap: 2rem;
+    padding-left: 2rem;
   }
 
   &__avatar {
@@ -64,6 +68,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 4rem 2rem;
   }
 
   &__send {
