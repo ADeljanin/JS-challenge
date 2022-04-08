@@ -7,14 +7,15 @@ const userLink = document.querySelector(".user-link");
 fetch("chat.json")
   .then((response) => response.json())
   .then((data) => {
-    // console.log(data);
+    addUsersToTheChatList(data);
+  });
 
-    // List of all usernames
-    data.forEach((element) => {
-      // console.log(element.name);
-
-      //Adding all users names from json file
-      const html = `
+function addUsersToTheChatList(users) {
+  let allUsersHtml = "";
+  // List of all usernames
+  users.forEach((element) => {
+    //Adding all users names from json file
+    allUsersHtml += `
       <a class="user-link" href="#">
         <div class="app-window__info">
             <img
@@ -30,24 +31,18 @@ fetch("chat.json")
             </div>
         </div>
       </a>`;
-
-      appUsers.insertAdjacentHTML("beforeend", html);
-    });
-
-    // let currentItem = 0;
-
-    // window.addEventListener("DOMContentLoaded", function () {
-    //   let element = document.getElementById("hidden");
-    //   console.log(element);
-    //   // element.classList.add("hidden");
-    // });
   });
+  appUsers.insertAdjacentHTML("beforeend", allUsersHtml);
+}
+
+// let currentItem = 0;
+
+// window.addEventListener("DOMContentLoaded", function () {
+//   let element = document.getElementById("hidden");
+//   console.log(element);
+//   // element.classList.add("hidden");
+// });
 
 //Remove hardcoded element from HTML file
 let removeElement = document.getElementById("#hidden");
 removeElement.className += " hidden";
-
-userLink.addEventListener("click", function () {
-  document.querySelector("app-window__info").style.backgroundColor =
-    "rgb(212, 37, 37)";
-});
