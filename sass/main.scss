@@ -50,6 +50,16 @@ main {
     border-radius: 2rem;
   }
 
+  &__header {
+    font-size: 2.5rem;
+    font-weight: bold;
+    display: none;
+  }
+
+  &__header.active {
+    display: block;
+  }
+
   &__info {
     display: flex;
     align-items: center;
