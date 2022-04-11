@@ -2,12 +2,57 @@
 
 const appUsers = document.querySelector(".app-window__users");
 const appInfo = document.querySelector(".app-window__info");
-const userLink = document.querySelector(".user-link");
+const appHeader = document.querySelector(".app-window__header");
+const appMessages = document.querySelector(".app-window__messages");
+const allMessages = document.querySelector(".app-window__all-messages");
 
 fetch("chat.json")
   .then((response) => response.json())
   .then((data) => {
     addUsersToTheChatList(data);
+
+    appUsers.addEventListener("click", function (e) {
+      const id = e.target.dataset.id;
+      if (id) {
+        appInfo.forEach(function (info) {
+          info.classList.remove("active");
+        });
+        e.target.classList.add("active");
+        allMessages.forEach(function (message) {
+          allMessages.classList.remove("active");
+        });
+        const element = document.getElementById(id);
+        element.classList.add("active");
+      }
+
+      //Add username to top of the chat
+      function addUsernameToTop(username) {
+        let user = "";
+        username.forEach((element) => {
+          user = `
+        <header class="app-window__header active" data-id="${element.id}">${element.name}</header>    
+        `;
+        });
+
+        appMessages.insertAdjacentHTML("afterbegin", user);
+      }
+      addUsernameToTop(data);
+
+      //Add all messages to right of the window
+      function addAllMessages(messages) {
+        let totalMessages = "";
+        messages.forEach((element) => {
+          totalMessages += `
+        <div class="app-window__all-messages active" >
+            ${element.messages[0].text}
+          </div>   
+        `;
+        });
+
+        appMessages.insertAdjacentHTML("beforeend", totalMessages);
+      }
+      addAllMessages(data);
+    });
   });
 
 function addUsersToTheChatList(users) {
@@ -16,8 +61,8 @@ function addUsersToTheChatList(users) {
   users.forEach((element) => {
     //Adding all users names from json file
     allUsersHtml += `
-      <a class="user-link" href="#">
-        <div class="app-window__info">
+     
+        <div class="app-window__info active" id="user-info">
             <img
               class="app-window__avatar"
               src="./img/img_avatar_${element.username}.png"
@@ -30,19 +75,12 @@ function addUsersToTheChatList(users) {
               }</p>
             </div>
         </div>
-      </a>`;
+      `;
   });
   appUsers.insertAdjacentHTML("beforeend", allUsersHtml);
 }
 
-// let currentItem = 0;
+// Selecting a user from the JSON file
 
-// window.addEventListener("DOMContentLoaded", function () {
-//   let element = document.getElementById("hidden");
-//   console.log(element);
-//   // element.classList.add("hidden");
-// });
-
-//Remove hardcoded element from HTML file
-let removeElement = document.getElementById("#hidden");
-removeElement.className += " hidden";
+/* <header class="app-window__header" data-id="${element.id}">NAME</header>
+     <div>ALL MESSAGES BETWEEN USER AND OWNER</div> */

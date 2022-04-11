@@ -44,7 +44,7 @@ main {
           box-shadow: 10px 30px 20px rgba(153, 145, 145, 0.2);
   border-radius: 2rem;
   font-size: 1.5rem;
-  width: 60%;
+  max-width: 60%;
   height: 80vh;
 }
 
@@ -61,7 +61,6 @@ main {
   background-color: white;
   height: 80vh;
   overflow: auto;
-  padding: 4rem 2rem;
 }
 
 .app-window__search {
@@ -78,6 +77,14 @@ main {
           align-items: center;
   gap: 2rem;
   padding-left: 2rem;
+}
+
+.app-window__info:hover {
+  cursor: pointer;
+}
+
+.app-window__info__info.active {
+  background-color: orangered;
 }
 
 .app-window__avatar {
@@ -105,6 +112,14 @@ main {
   padding: 4rem 2rem;
 }
 
+.app-window__all-messages {
+  display: none;
+}
+
+.app-window__all-messages.active {
+  display: block;
+}
+
 .app-window__send {
   display: -ms-grid;
   display: grid;
@@ -123,14 +138,5 @@ main {
 .app-window__emotikon {
   font-size: 4rem;
   color: gray;
-}
-
-.hidden {
-  display: none;
-}
-
-.user-link {
-  text-decoration: none;
-  color: black;
 }
 /*# sourceMappingURL=main.css.map */

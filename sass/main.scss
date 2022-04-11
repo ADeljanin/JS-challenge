@@ -32,7 +32,7 @@ main {
   box-shadow: 10px 30px 20px rgba(153, 145, 145, 0.2);
   border-radius: 2rem;
   font-size: 1.5rem;
-  width: 60%;
+  max-width: 60%;
   height: 80vh;
 
   &__users {
@@ -43,7 +43,6 @@ main {
     background-color: rgb(255, 255, 255);
     height: 80vh;
     overflow: auto;
-    padding: 4rem 2rem;
   }
 
   &__search {
@@ -56,6 +55,14 @@ main {
     align-items: center;
     gap: 2rem;
     padding-left: 2rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &__info.active {
+      background-color: orangered;
+    }
   }
 
   &__avatar {
@@ -74,6 +81,12 @@ main {
     justify-content: space-between;
     padding: 4rem 2rem;
   }
+  &__all-messages {
+    display: none;
+  }
+  &__all-messages.active {
+    display: block;
+  }
 
   &__send {
     display: grid;
@@ -91,13 +104,4 @@ main {
 
     color: gray;
   }
-}
-
-.hidden {
-  display: none;
-}
-
-.user-link {
-  text-decoration: none;
-  color: black;
 }
