@@ -5,10 +5,13 @@ const appInfo = document.querySelectorAll(".app-window__info");
 const appHeader = document.querySelector(".app-window__header");
 const appMessages = document.querySelector(".app-window__messages");
 const allMessages = document.querySelector(".app-window__all-messages");
+let userJsonData;
 
+console.log();
 fetch("chat.json")
   .then((response) => response.json())
   .then((data) => {
+    userJsonData = data;
     addUsersToTheChatList(data);
 
     appUsers.addEventListener("click", function (e) {
@@ -50,33 +53,19 @@ function addUsersToTheChatList(users) {
     allUsersHtml += `
     
     <div class="app-window__info active" id="user-info">
-    <img
-    class="app-window__avatar"
-    src="./img/img_avatar_${element.username}.png"
-    alt="user picture"
-    />
-    <div>
-    <h3 id="#username">${element.name}</h3>
-    <p class="app-window__last-msg">${
-      element.messages[element.messages.length - 1].text
-    }</p>
-    </div>
+      <img
+      class="app-window__avatar"
+      src="./img/img_avatar_${element.username}.png"
+      alt="user picture"
+      />
+      <div>
+        <h3 id="#username">${element.name}</h3>
+        <p class="app-window__last-msg">${
+          element.messages[element.messages.length - 1].text
+        }</p>
+      </div>
     </div>
     `;
   });
   appUsers.insertAdjacentHTML("beforeend", allUsersHtml);
 }
-
-///////maybe some good code //////////////////////////////////////////////////////////////////////////////////
-// const id = e.target.dataset.id;
-// if (id) {
-//   appInfo.forEach(function (info) {
-//     info.classList.remove("active");
-//   });
-//   e.target.classList.add("active");
-//   allMessages.forEach(function (message) {
-//     allMessages.classList.remove("active");
-//   });
-//   const element = document.getElementById(id);
-//   element.classList.add("active");
-// }
