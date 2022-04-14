@@ -14,37 +14,34 @@ fetch("chat.json")
     userJsonData = data;
     addUsersToTheChatList(userJsonData);
 
-    appUsers.addEventListener("click", function (e) {
-      console.log(e.target.dataset.id);
-      //Add all messages to right of the window
-      function addAllMessages(messages) {
-        let totalMessages = "";
-        messages.forEach((element) => {
-          totalMessages += `
-         <div class="app-window__all-messages active" >
-             ${element.messages[0].text}
-           </div>
-           `;
-        });
-
-        appMessages.insertAdjacentHTML("afterbegin", totalMessages);
-      }
-      addAllMessages(userJsonData);
-
-      //Add username to top of the chat
-      function addUsernameToTop(username) {
-        let user = "";
-        username.forEach((element) => {
-          user += `
-          <header class="app-window__header active">${element.name}</header>    
-          `;
-        });
-        appMessages.insertAdjacentHTML("afterbegin", user);
-      }
-      addUsernameToTop(data);
-    });
-  });
-
+    // appUsers.addEventListener("click", function (e) {
+    //Add all messages to right of the window
+    // function addAllMessages(messages) {
+    //   let totalMessages = "";
+    //   messages.forEach((element) => {
+    //     totalMessages += `
+    //    <div class="app-window__all-messages active" >
+    //        ${element.messages[0].text}
+    //      </div>
+    //      `;
+    //   });
+    //   appMessages.insertAdjacentHTML("afterbegin", totalMessages);
+    // }
+    // addAllMessages(userJsonData);
+    //Add username to top of the chat
+    // function addUsernameToTop(username) {
+    //   let user = "";
+    //   username.forEach((element) => {
+    //     user += `
+    //     <header class="app-window__header active">${element.name}</header>
+    //     `;
+    //   });
+    //   appMessages.insertAdjacentHTML("afterbegin", user);
+    // }
+    // addUsernameToTop(data);
+    // });
+    // });
+  }); //
 /////////////// all users to the chat list ///////////////
 function addUsersToTheChatList(users) {
   let allUsersHtml = "";
@@ -55,7 +52,7 @@ function addUsersToTheChatList(users) {
     
     <div class="app-window__info active" data-id="${
       element.id
-    }" onclick="onUserClick(${element.name})">
+    }" onclick="onUserClick('${element.id}')">
       <img
       class="app-window__avatar"
       src="./img/img_avatar_${element.username}.png"
@@ -73,4 +70,9 @@ function addUsersToTheChatList(users) {
   appUsers.insertAdjacentHTML("beforeend", allUsersHtml);
 }
 
+function onUserClick(userId) {
+  const userMessages = userJsonData[userId - 1].messages;
+  appHeader.textContent = userJsonData[userId - 1].name;
+  console.log(userMessages);
+}
 // insert all users in one container and use data-id to select it on
