@@ -78,6 +78,17 @@ main {
   display: block;
 }
 
+.app-window__sent-recieved {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2rem;
+}
+
 .app-window__info {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -148,5 +159,23 @@ main {
 .app-window__emotikon {
   font-size: 4rem;
   color: gray;
+}
+
+.sent {
+  padding: 1rem;
+  background-color: #dddddd;
+  display: inline-block;
+  border-radius: 1rem;
+}
+
+.received {
+  padding: 1rem;
+  background-color: #78ddf1;
+  border-radius: 1rem;
+  display: inline-block;
+}
+
+.test {
+  display: inline-block;
 }
 /*# sourceMappingURL=main.css.map */

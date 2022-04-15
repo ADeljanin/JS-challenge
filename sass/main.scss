@@ -60,6 +60,12 @@ main {
     display: block;
   }
 
+  &__sent-recieved {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
   &__info {
     display: flex;
     align-items: center;
@@ -114,4 +120,21 @@ main {
 
     color: gray;
   }
+}
+
+.sent {
+  padding: 1rem;
+  background-color: rgb(221, 221, 221);
+  display: inline-block;
+  border-radius: 1rem;
+}
+.received {
+  padding: 1rem;
+  background-color: rgb(120, 221, 241);
+  border-radius: 1rem;
+  display: inline-block;
+}
+
+.test {
+  display: inline-block;
 }

@@ -12,7 +12,7 @@
     },
     "messages": [
       {
-        "type": "send",
+        "type": "sent",
         "time": "2022-03-31T18:37:22.585Z",
         "text": "Hello !"
       },
@@ -70,7 +70,7 @@
     },
     "messages": [
       {
-        "type": "send",
+        "type": "sent",
         "time": "2022-03-31T18:37:22.585Z",
         "text": "Yo !"
       },
@@ -109,7 +109,7 @@
     },
     "messages": [
       {
-        "type": "send",
+        "type": "sent",
         "time": "2022-03-31T18:37:22.585Z",
         "text": "Good !"
       },
@@ -143,7 +143,7 @@
     },
     "messages": [
       {
-        "type": "send",
+        "type": "sent",
         "time": "2022-03-31T18:37:22.585Z",
         "text": "pool today?"
       },
@@ -167,7 +167,7 @@
     },
     "messages": [
       {
-        "type": "send",
+        "type": "sent",
         "time": "2022-03-31T18:37:22.585Z",
         "text": "some glasses for wine?"
       },
@@ -201,7 +201,7 @@
     },
     "messages": [
       {
-        "type": "send",
+        "type": "sent",
         "time": "2022-03-31T18:37:22.585Z",
         "text": "is there some hardware store near you?"
       },
@@ -240,7 +240,7 @@
     },
     "messages": [
       {
-        "type": "send",
+        "type": "sent",
         "time": "2022-03-31T18:37:22.585Z",
         "text": "do you have charger for iPhone"
       },
@@ -274,7 +274,7 @@
     },
     "messages": [
       {
-        "type": "send",
+        "type": "sent",
         "time": "2022-03-31T18:37:22.585Z",
         "text": "Do you have some food at home, I couldn t find any fast food store"
       },
@@ -303,7 +303,7 @@
     },
     "messages": [
       {
-        "type": "send",
+        "type": "sent",
         "time": "2022-03-31T18:37:22.585Z",
         "text": "Hello !"
       },
