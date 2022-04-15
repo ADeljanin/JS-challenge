@@ -76,17 +76,17 @@ main {
 
 .app-window__header.active {
   display: block;
+  margin-bottom: 2rem;
 }
 
-.app-window__sent-recieved {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 2rem;
+.app-window__one-message-received {
+  margin-bottom: 1.5rem;
+  text-align: right;
+}
+
+.app-window__one-message-sent {
+  margin-bottom: 1.5rem;
+  text-align: left;
 }
 
 .app-window__info {
@@ -166,6 +166,7 @@ main {
   background-color: #dddddd;
   display: inline-block;
   border-radius: 1rem;
+  text-align: left;
 }
 
 .received {
@@ -173,6 +174,9 @@ main {
   background-color: #78ddf1;
   border-radius: 1rem;
   display: inline-block;
+  text-align: right;
+  margin-left: auto;
+  width: auto;
 }
 
 .time-delivery {

@@ -58,12 +58,19 @@ main {
 
   &__header.active {
     display: block;
+    margin-bottom: 2rem;
   }
 
-  &__sent-recieved {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+  // &__sent-recieved {
+  //   display: inline-block;
+  // }
+  &__one-message-received {
+    margin-bottom: 1.5rem;
+    text-align: right;
+  }
+  &__one-message-sent {
+    margin-bottom: 1.5rem;
+    text-align: left;
   }
 
   &__info {
@@ -127,12 +134,16 @@ main {
   background-color: rgb(221, 221, 221);
   display: inline-block;
   border-radius: 1rem;
+  text-align: left;
 }
 .received {
   padding: 1rem;
   background-color: rgb(120, 221, 241);
   border-radius: 1rem;
   display: inline-block;
+  text-align: right;
+  margin-left: auto;
+  width: auto;
 }
 
 .time-delivery {

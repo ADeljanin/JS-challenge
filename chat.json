@@ -35,6 +35,11 @@
         "type": "sent",
         "time": "2022-04-02T18:40:35.585Z",
         "text": "You ?"
+      },
+      {
+        "type": "received",
+        "time": "2022-04-02T18:45:35.585Z",
+        "text": "Not too baaaaad :)"
       }
     ]
   },

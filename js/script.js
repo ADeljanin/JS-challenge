@@ -50,8 +50,7 @@ function onUserClick(userId) {
   function insertUserMessages(userMessages) {
     let allMessages = userMessages.map(function (item) {
       const time = dayjs(item.time).format("hh:mm");
-      console.log(time);
-      return `<div>
+      return `<div class="app-window__one-message-${item.type}">
                 <p class="${item.type}">${item.text}</p>
                 <p class="time-delivery">${time}</p>
               </div>`;
