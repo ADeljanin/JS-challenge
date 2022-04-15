@@ -13,27 +13,27 @@
     "messages": [
       {
         "type": "sent",
-        "time": "2022-03-31T18:37:22.585Z",
+        "time": "2022-04-01T18:37:22.585Z",
         "text": "Hello !"
       },
       {
         "type": "received",
-        "time": "2022-03-31T18:38:22.585Z",
+        "time": "2022-04-01T18:38:22.585Z",
         "text": "Hi Elanne !"
       },
       {
         "type": "received",
-        "time": "2022-03-31T18:38:56.585Z",
+        "time": "2022-04-02T18:38:56.585Z",
         "text": "how are you"
       },
       {
         "type": "sent",
-        "time": "2022-03-31T18:39:12.585Z",
+        "time": "2022-04-02T18:39:12.585Z",
         "text": "I am fine, thanks."
       },
       {
         "type": "sent",
-        "time": "2022-03-31T18:40:35.585Z",
+        "time": "2022-04-02T18:40:35.585Z",
         "text": "You ?"
       }
     ]
@@ -54,6 +54,16 @@
         "type": "received",
         "time": "2022-04-25T20:31:44.585Z",
         "text": "Greeting !"
+      },
+      {
+        "type": "sent",
+        "time": "2022-03-31T18:37:22.585Z",
+        "text": "Hello !"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "How is your day?"
       }
     ]
   },

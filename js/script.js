@@ -44,17 +44,33 @@ function addUsersToTheChatList(users) {
 
 function onUserClick(userId) {
   const userMessages = userJsonData[userId - 1].messages;
+
   appHeader.textContent = userJsonData[userId - 1].name;
-  let allMessages = "";
 
-  userMessages.forEach((element) => {
-    let x = element.text;
-    console.log(x);
-    allMessages += `
-      <div class="test"><p class="${element.type}">${x}</p></div>`;
-  });
+  function insertUserMessages(userMessages) {
+    let allMessages = userMessages.map(function (item) {
+      const time = dayjs(item.time).format("hh:mm");
+      console.log(time);
+      return `<div>
+                <p class="${item.type}">${item.text}</p>
+                <p class="time-delivery">${time}</p>
+              </div>`;
+    });
+    allMessages = allMessages.join("");
 
-  appSentRecieved.insertAdjacentHTML("beforeend", allMessages);
+    appSentRecieved.innerHTML = allMessages;
+  }
+  insertUserMessages(userMessages);
+  //////////////////////////////INSERT ALL MESSAGES (NO DELETE PREVIOUS)//////
+  //   let allMessages = "";
+  //   userMessages.forEach((element) => {
+  //     let x = element.text;
+  //     console.log(x);
+  //     allMessages += `
+  //       <div><p class="${element.type}">${x}</p></div>`;
+  //   });
+
+  //   appSentRecieved.insertAdjacentHTML("beforeend", allMessages);
 }
 // appSentRecieved.textContent = x;
 
