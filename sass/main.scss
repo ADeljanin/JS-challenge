@@ -26,11 +26,10 @@ main {
 /* Whole window */
 .app-window {
   display: grid;
-  grid-template-columns: 1.5fr 2.5fr;
-  gap: 3rem;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
   background-image: url(../img/dust_scratches.png);
   box-shadow: 10px 30px 20px rgba(153, 145, 145, 0.2);
-  border-radius: 2rem;
   font-size: 1.5rem;
   max-width: 100rem;
   height: 80vh;
@@ -42,7 +41,7 @@ main {
     gap: 2rem;
     background-color: rgb(255, 255, 255);
     height: 80vh;
-    overflow: auto;
+    overflow-y: scroll;
   }
 
   &__search {
@@ -61,16 +60,21 @@ main {
     margin-bottom: 2rem;
   }
 
-  // &__sent-recieved {
-  //   display: inline-block;
-  // }
+  &__sent-recieved {
+    overflow: auto;
+  }
   &__one-message-received {
     margin-bottom: 1.5rem;
     text-align: right;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
   }
   &__one-message-sent {
     margin-bottom: 1.5rem;
     text-align: left;
+    display: flex;
+    gap: 1rem;
   }
 
   &__info {
@@ -88,10 +92,14 @@ main {
     }
   }
 
-  &__avatar {
+  &__avatar,
+  &__avatar-small {
     width: 20%;
     height: auto;
     border-radius: 10rem;
+  }
+  &__avatar-small {
+    width: 8%;
   }
 
   &__last-msg {
@@ -102,7 +110,9 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 4rem 2rem;
+    padding: 4rem 1rem;
+
+    overflow-y: scroll;
   }
   &__all-messages {
     display: none;

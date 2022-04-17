@@ -36,13 +36,12 @@ main {
 .app-window {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1.5fr 2.5fr;
-      grid-template-columns: 1.5fr 2.5fr;
-  gap: 3rem;
+  -ms-grid-columns: 1fr 2fr;
+      grid-template-columns: 1fr 2fr;
+  gap: 1rem;
   background-image: url(../img/dust_scratches.png);
   -webkit-box-shadow: 10px 30px 20px rgba(153, 145, 145, 0.2);
           box-shadow: 10px 30px 20px rgba(153, 145, 145, 0.2);
-  border-radius: 2rem;
   font-size: 1.5rem;
   max-width: 100rem;
   height: 80vh;
@@ -60,7 +59,7 @@ main {
   gap: 2rem;
   background-color: white;
   height: 80vh;
-  overflow: auto;
+  overflow-y: scroll;
 }
 
 .app-window__search {
@@ -79,14 +78,30 @@ main {
   margin-bottom: 2rem;
 }
 
+.app-window__sent-recieved {
+  overflow: auto;
+}
+
 .app-window__one-message-received {
   margin-bottom: 1.5rem;
   text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  gap: 1rem;
 }
 
 .app-window__one-message-sent {
   margin-bottom: 1.5rem;
   text-align: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
 }
 
 .app-window__info {
@@ -108,10 +123,14 @@ main {
   background-color: orangered;
 }
 
-.app-window__avatar {
+.app-window__avatar, .app-window__avatar-small {
   width: 20%;
   height: auto;
   border-radius: 10rem;
+}
+
+.app-window__avatar-small {
+  width: 8%;
 }
 
 .app-window__last-msg {
@@ -130,7 +149,8 @@ main {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 4rem 2rem;
+  padding: 4rem 1rem;
+  overflow-y: scroll;
 }
 
 .app-window__all-messages {

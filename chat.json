@@ -14,7 +14,7 @@
       {
         "type": "sent",
         "time": "2022-04-01T18:37:22.585Z",
-        "text": "Hello !"
+        "text": "Hello ! 🤗"
       },
       {
         "type": "received",
@@ -39,7 +39,7 @@
       {
         "type": "received",
         "time": "2022-04-02T18:45:35.585Z",
-        "text": "Not too baaaaad :)"
+        "text": "Not too baaaaad 🥎"
       }
     ]
   },
@@ -58,7 +58,7 @@
       {
         "type": "received",
         "time": "2022-04-25T20:31:44.585Z",
-        "text": "Greeting !"
+        "text": "Greeting ! 😎"
       },
       {
         "type": "sent",
@@ -68,7 +68,7 @@
       {
         "type": "received",
         "time": "2022-03-31T18:38:22.585Z",
-        "text": "How is your day?"
+        "text": "How is your day? "
       }
     ]
   },
@@ -126,7 +126,7 @@
       {
         "type": "sent",
         "time": "2022-03-31T18:37:22.585Z",
-        "text": "Good !"
+        "text": "Helloooooo !"
       },
       {
         "type": "received",
@@ -160,7 +160,7 @@
       {
         "type": "sent",
         "time": "2022-03-31T18:37:22.585Z",
-        "text": "pool today?"
+        "text": "pool today? 🏊‍♂️"
       },
       {
         "type": "received",
@@ -184,7 +184,7 @@
       {
         "type": "sent",
         "time": "2022-03-31T18:37:22.585Z",
-        "text": "some glasses for wine?"
+        "text": "some glasses for wine? 🍷"
       },
       {
         "type": "received",
@@ -218,7 +218,7 @@
       {
         "type": "sent",
         "time": "2022-03-31T18:37:22.585Z",
-        "text": "is there some hardware store near you?"
+        "text": "is there some hardware store near you? 🔨"
       },
       {
         "type": "received",
@@ -296,7 +296,7 @@
       {
         "type": "received",
         "time": "2022-03-31T18:38:22.585Z",
-        "text": "yeah, come over for some fresh club sandwich"
+        "text": "yeah, come over for some fresh club sandwich 🥪"
       },
       {
         "type": "received",
@@ -335,12 +335,47 @@
       {
         "type": "sent",
         "time": "2022-03-31T18:39:12.585Z",
-        "text": "why not? maybe 2!"
+        "text": "why not? maybe 2! 🍻"
       },
       {
         "type": "sent",
         "time": "2022-03-31T18:40:35.585Z",
         "text": "ofcourse 2, i'm there in a minute"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "ok"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "see ya"
+      },
+      {
+        "type": "sent",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "🤜🤛"
+      },
+      {
+        "type": "sent",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "right on"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "Mike's pub?"
+      },
+      {
+        "type": "sent",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "yes"
+      },
+      {
+        "type": "received",
+        "time": "2022-03-31T18:38:22.585Z",
+        "text": "the best pub in the city!"
       }
     ]
   }

@@ -14,7 +14,7 @@ fetch("chat.json")
     userJsonData = data;
     addUsersToTheChatList(userJsonData);
   }); //
-/////////////// all users to the chat list ///////////////
+/////////////// ALL USERS TO THE CHAT LIST ///////////////
 function addUsersToTheChatList(users) {
   let allUsersHtml = "";
   // List of all usernames
@@ -22,9 +22,9 @@ function addUsersToTheChatList(users) {
     //Adding all users names from json file
     allUsersHtml += `
     
-    <div class="app-window__info active" data-id="${
+    <div class="app-window__info" data-id="${
       element.id
-    }" onclick="onUserClick('${element.id}')">
+    }" onclick="onUserClick('${element.id}', this)">
       <img
       class="app-window__avatar"
       src="./img/img_avatar_${element.username}.png"
@@ -42,51 +42,43 @@ function addUsersToTheChatList(users) {
   appUsers.insertAdjacentHTML("beforeend", allUsersHtml);
 }
 
-function onUserClick(userId) {
+/////// CLICK ON USER ////////
+
+function onUserClick(userId, element) {
   const userMessages = userJsonData[userId - 1].messages;
-
   appHeader.textContent = userJsonData[userId - 1].name;
-
   function insertUserMessages(userMessages) {
     let allMessages = userMessages.map(function (item) {
       const time = dayjs(item.time).format("hh:mm");
-      return `<div class="app-window__one-message-${item.type}">
-                <p class="${item.type}">${item.text}</p>
-                <p class="time-delivery">${time}</p>
+      if (item.type === "received") {
+        return `<div class="app-window__one-message-${item.type}">
+                <img
+                class="app-window__avatar-small"
+                src="./img/img_avatar_${userJsonData[userId - 1].username}.png"
+                alt="user picture"
+                />
+                <div>
+                  <p class="${item.type}">${item.text}</p>
+                  <p class="time-delivery">${time}</p>
+                </div>
               </div>`;
+      } else {
+        return `<div class="app-window__one-message-${item.type}">
+                <img
+                class="app-window__avatar-small"
+                src="./img/img_avatar.png"
+                alt="user picture"
+                />
+                <div>
+                  <p class="${item.type}">${item.text}</p>
+                  <p class="time-delivery">${time}</p>
+                </div>
+              </div>`;
+      }
     });
     allMessages = allMessages.join("");
 
     appSentRecieved.innerHTML = allMessages;
   }
   insertUserMessages(userMessages);
-  //////////////////////////////INSERT ALL MESSAGES (NO DELETE PREVIOUS)//////
-  //   let allMessages = "";
-  //   userMessages.forEach((element) => {
-  //     let x = element.text;
-  //     console.log(x);
-  //     allMessages += `
-  //       <div><p class="${element.type}">${x}</p></div>`;
-  //   });
-
-  //   appSentRecieved.insertAdjacentHTML("beforeend", allMessages);
 }
-// appSentRecieved.textContent = x;
-
-// console.log(userMessages);
-// insert all users in one container and use data-id to select it on
-
-// appUsers.addEventListener("click", function (e) {
-//Add all messages to right of the window
-// function addAllMessages(messages) {
-//   let totalMessages = "";
-//   messages.forEach((element) => {
-//     totalMessages += `
-//    <div class="app-window__all-messages active" >
-//        ${element.messages[0].text}
-//      </div>
-//      `;
-//   });
-//   appMessages.insertAdjacentHTML("afterbegin", totalMessages);
-// }
-// addAllMessages(userJsonData);
