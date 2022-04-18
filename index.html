@@ -15,7 +15,7 @@
     <main>
       <!-- Users side of the window -->
       <div class="app-window">
-        <div class="app-window__users">
+        <div class="app-window__left">
           <input
             class="app-window__search"
             type="search"
@@ -23,9 +23,10 @@
             placeholder="&#xF002; Search..."
             style="font-family: Arial, FontAwesome"
           />
+          <div class="app-window__users">
+            <!-- USERS LIST GOES HERE-->
+          </div>
         </div>
-
-        <!-- USERS LIST GOES HERE-->
 
         <!-- Messages side of the window -->
         <div class="app-window__messages">
@@ -35,7 +36,7 @@
           </div>
           <div class="app-window__send">
             <input
-              class="app-window__search"
+              class="app-window__typing"
               type="text"
               placeholder="&#xf0e0; Type a message..."
               style="font-family: Arial, FontAwesome"

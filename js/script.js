@@ -5,6 +5,7 @@ const appInfo = document.querySelectorAll(".app-window__info");
 const appHeader = document.querySelector(".app-window__header");
 const appMessages = document.querySelector(".app-window__messages");
 const appSentRecieved = document.querySelector(".app-window__sent-recieved");
+const searchInput = document.querySelector(".app-window__search");
 let userJsonData;
 
 console.log();
@@ -82,3 +83,9 @@ function onUserClick(userId, element) {
   }
   insertUserMessages(userMessages);
 }
+
+////////// SEARCH //////////
+searchInput.addEventListener("input", function (e) {
+  const value = e.target.value;
+  console.log(value);
+});

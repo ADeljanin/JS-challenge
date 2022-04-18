@@ -32,7 +32,8 @@ main {
   box-shadow: 10px 30px 20px rgba(153, 145, 145, 0.2);
   font-size: 1.5rem;
   max-width: 100rem;
-  height: 80vh;
+  height: 85vh;
+  overflow: hidden;
 
   &__users {
     width: 100%;
@@ -41,12 +42,33 @@ main {
     gap: 2rem;
     background-color: rgb(255, 255, 255);
     height: 80vh;
-    overflow-y: scroll;
   }
 
+  &__left {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    padding-top: 1rem;
+  }
   &__search {
-    padding: 1rem 2rem;
+    padding: 2rem 2rem;
     border-radius: 2rem;
+    width: 90%;
+    border: none;
+    background-color: rgb(242, 242, 242);
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  &__typing {
+    padding: 2rem 2rem;
+    border-radius: 2rem;
+    width: 90%;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+    margin-bottom: 2rem;
   }
 
   &__header {
@@ -61,7 +83,7 @@ main {
   }
 
   &__sent-recieved {
-    overflow: auto;
+    margin: 1rem;
   }
   &__one-message-received {
     margin-bottom: 1.5rem;
@@ -110,9 +132,8 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 4rem 1rem;
-
     overflow-y: scroll;
+    padding-top: 5rem;
   }
   &__all-messages {
     display: none;
@@ -158,4 +179,8 @@ main {
 
 .time-delivery {
   font-size: 1rem;
+}
+
+.hide {
+  display: none;
 }
