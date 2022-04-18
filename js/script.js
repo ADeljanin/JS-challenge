@@ -8,13 +8,18 @@ const appSentRecieved = document.querySelector(".app-window__sent-recieved");
 const searchInput = document.querySelector(".app-window__search");
 let userJsonData;
 
-console.log();
+let users = [];
+
 fetch("chat.json")
   .then((response) => response.json())
   .then((data) => {
     userJsonData = data;
     addUsersToTheChatList(userJsonData);
+    users = userJsonData.map((user) => {
+      return { fullName: user.name };
+    });
   }); //
+
 /////////////// ALL USERS TO THE CHAT LIST ///////////////
 function addUsersToTheChatList(users) {
   let allUsersHtml = "";
@@ -85,7 +90,12 @@ function onUserClick(userId, element) {
 }
 
 ////////// SEARCH //////////
-searchInput.addEventListener("input", function (e) {
-  const value = e.target.value;
-  console.log(value);
+
+searchInput.addEventListener("keyup", function (e) {
+  const value = e.target.value.toLowerCase();
+  users.forEach((user) => {
+    const isVisible = user.fullName.toLowerCase().includes(value);
+    user.element.classList.toggle("hide", !isVisible);
+    //this line up doesnt work because appInfo/user.element is loaded from JS file, and it is unknown at this time, you should find the way to see all loaded elements from JS file
+  });
 });

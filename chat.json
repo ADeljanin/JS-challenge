@@ -189,17 +189,23 @@
       {
         "type": "received",
         "time": "2022-03-31T18:38:22.585Z",
-        "text": "at IKEA"
+        "text": "try at IKEA"
       },
       {
-        "type": "received",
+        "type": "sent",
         "time": "2022-03-31T18:38:56.585Z",
         "text": "down the street?"
       },
       {
-        "type": "sent",
+        "type": "received",
         "time": "2022-03-31T18:39:12.585Z",
         "text": "yeeeees"
+      },
+
+      {
+        "type": "received",
+        "time": "2022-03-31T18:40:12.585Z",
+        "text": "video call me when you get there, I'll help you pick"
       }
     ]
   },
@@ -226,12 +232,12 @@
         "text": "yes, send me what you want"
       },
       {
-        "type": "received",
+        "type": "sent",
         "time": "2022-03-31T18:38:56.585Z",
         "text": "some screws for my night cabinet"
       },
       {
-        "type": "sent",
+        "type": "received",
         "time": "2022-03-31T18:39:12.585Z",
         "text": "send mm measures"
       },
@@ -265,12 +271,12 @@
         "text": "no, but my neighbour does"
       },
       {
-        "type": "received",
+        "type": "sent",
         "time": "2022-03-31T18:38:56.585Z",
         "text": "borrow it for me, for an hour"
       },
       {
-        "type": "sent",
+        "type": "received",
         "time": "2022-03-31T18:39:12.585Z",
         "text": "ok"
       }

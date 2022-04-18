@@ -75,11 +75,11 @@ main {
       -ms-flex-align: center;
           align-items: center;
   overflow-y: scroll;
-  padding-top: 1rem;
+  padding-top: 2rem;
 }
 
 .app-window__search {
-  padding: 2rem 2rem;
+  padding: 2rem 1rem;
   border-radius: 2rem;
   width: 90%;
   border: none;
@@ -89,13 +89,14 @@ main {
 }
 
 .app-window__typing {
-  padding: 2rem 2rem;
+  padding: 2rem 1rem;
   border-radius: 2rem;
   width: 90%;
   border: none;
   background-color: white;
   overflow: hidden;
-  margin-bottom: 2rem;
+  -webkit-box-shadow: 2px 2px 10px #f9bebe;
+          box-shadow: 2px 2px 10px #f9bebe;
 }
 
 .app-window__header {
@@ -181,7 +182,7 @@ main {
       -ms-flex-pack: justify;
           justify-content: space-between;
   overflow-y: scroll;
-  padding-top: 5rem;
+  padding: 3rem 0;
 }
 
 .app-window__all-messages {
@@ -192,12 +193,30 @@ main {
   display: block;
 }
 
+.app-window__button {
+  width: 10rem;
+  height: auto;
+  padding: 1rem 0.5rem;
+  border: 2px solid white;
+  border-radius: 3rem;
+  background-color: #c99898;
+  font-weight: bold;
+  color: white;
+  font-size: 2rem;
+  -webkit-box-shadow: 2px 2px 10px #f9bebe;
+          box-shadow: 2px 2px 10px #f9bebe;
+}
+
 .app-window__send {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 9fr 1fr 1fr 1fr;
       grid-template-columns: 9fr 1fr 1fr 1fr;
   gap: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: end;
 }
 
 .app-window__attach {
@@ -222,7 +241,7 @@ main {
 
 .received {
   padding: 1rem;
-  background-color: #78ddf1;
+  background-color: #f9bebe;
   border-radius: 1rem;
   display: inline-block;
   text-align: right;

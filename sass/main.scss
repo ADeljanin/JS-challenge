@@ -50,10 +50,10 @@ main {
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
-    padding-top: 1rem;
+    padding-top: 2rem;
   }
   &__search {
-    padding: 2rem 2rem;
+    padding: 2rem 1rem;
     border-radius: 2rem;
     width: 90%;
     border: none;
@@ -62,13 +62,13 @@ main {
     margin-bottom: 2rem;
   }
   &__typing {
-    padding: 2rem 2rem;
+    padding: 2rem 1rem;
     border-radius: 2rem;
     width: 90%;
     border: none;
     background-color: rgb(255, 255, 255);
     overflow: hidden;
-    margin-bottom: 2rem;
+    box-shadow: 2px 2px 10px rgb(249, 190, 190);
   }
 
   &__header {
@@ -102,6 +102,7 @@ main {
   &__info {
     display: flex;
     align-items: center;
+
     gap: 2rem;
     padding-left: 2rem;
 
@@ -133,7 +134,7 @@ main {
     flex-direction: column;
     justify-content: space-between;
     overflow-y: scroll;
-    padding-top: 5rem;
+    padding: 3rem 0;
   }
   &__all-messages {
     display: none;
@@ -142,10 +143,24 @@ main {
     display: block;
   }
 
+  &__button {
+    width: 10rem;
+    height: auto;
+    padding: 1rem 0.5rem;
+    border: 2px solid white;
+    border-radius: 3rem;
+    background-color: rgb(201, 152, 152);
+    font-weight: bold;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 2px 2px 10px rgb(249, 190, 190);
+  }
   &__send {
     display: grid;
     grid-template-columns: 9fr 1fr 1fr 1fr;
     gap: 2rem;
+    align-items: center;
+    justify-items: end;
   }
   &__attach {
     font-size: 4rem;
@@ -169,7 +184,7 @@ main {
 }
 .received {
   padding: 1rem;
-  background-color: rgb(120, 221, 241);
+  background-color: rgb(249, 190, 190);
   border-radius: 1rem;
   display: inline-block;
   text-align: right;
