@@ -7,6 +7,7 @@ const appMessages = document.querySelector(".app-window__messages");
 const appSentRecieved = document.querySelector(".app-window__sent-recieved");
 const searchInput = document.querySelector(".app-window__search");
 const btnSend = document.querySelector(".app-window__button");
+const appSend = document.querySelectorAll(".app-window__send");
 let userJsonData;
 
 let users = [];
@@ -84,12 +85,13 @@ function onUserClick(userId, element) {
       }
     });
     allMessages = allMessages.join("");
-
     appSentRecieved.innerHTML = allMessages;
   }
   insertUserMessages(userMessages);
-}
+  let info = document.querySelectorAll(".app-window__info");
 
+  console.log(info);
+}
 ////////// SEARCH //////////
 
 searchInput.addEventListener("keyup", function (e) {
@@ -101,6 +103,7 @@ searchInput.addEventListener("keyup", function (e) {
   });
 });
 
+////////////////////// SEND BUTTON /////////////////
 btnSend.addEventListener("click", function () {
   let message = document.getElementById("typing").value;
   let currentDate = new Date();
@@ -119,6 +122,5 @@ btnSend.addEventListener("click", function () {
   if (appSentRecieved.childNodes.length !== 0) {
     appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
   }
+  document.getElementById("typing").value = "";
 });
-
-console.log(appInfo);

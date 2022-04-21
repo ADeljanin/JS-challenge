@@ -105,7 +105,7 @@ main {
   display: none;
 }
 
-.app-window__header.active {
+.app-window__header {
   display: block;
   margin-bottom: 2rem;
 }
@@ -150,10 +150,6 @@ main {
 
 .app-window__info:hover {
   cursor: pointer;
-}
-
-.app-window__info__info.active {
-  background-color: orangered;
 }
 
 .app-window__avatar, .app-window__avatar-small {
@@ -256,5 +252,9 @@ main {
 
 .hide {
   display: none;
+}
+
+.active {
+  background-color: #e6e6e6;
 }
 /*# sourceMappingURL=main.css.map */
