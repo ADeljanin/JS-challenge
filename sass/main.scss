@@ -84,6 +84,7 @@ main {
 
   &__sent-recieved {
     margin: 1rem;
+    overflow-y: scroll;
   }
   &__one-message-received {
     margin-bottom: 1.5rem;

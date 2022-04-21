@@ -6,6 +6,7 @@ const appHeader = document.querySelector(".app-window__header");
 const appMessages = document.querySelector(".app-window__messages");
 const appSentRecieved = document.querySelector(".app-window__sent-recieved");
 const searchInput = document.querySelector(".app-window__search");
+const btnSend = document.querySelector(".app-window__button");
 let userJsonData;
 
 let users = [];
@@ -98,4 +99,23 @@ searchInput.addEventListener("keyup", function (e) {
     user.element.classList.toggle("hide", !isVisible);
     //this line up doesnt work because appInfo/user.element is loaded from JS file, and it is unknown at this time, you should find the way to see all loaded elements from JS file
   });
+});
+
+btnSend.addEventListener("click", function () {
+  let message = document.getElementById("typing").value;
+  let currentDate = new Date();
+  let newHtml = `<div class="app-window__one-message-sent">
+                <img
+                class="app-window__avatar-small"
+                src="./img/img_avatar.png"
+                alt="user picture"
+                />
+                <div>
+                  <p class="sent">${message}</p>
+                  <p class="time-delivery">${currentDate.getHours()}:${currentDate.getMinutes()}</p>
+                </div>
+              </div>`;
+  if (appSentRecieved.childNodes.length !== 0) {
+    appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
+  }
 });

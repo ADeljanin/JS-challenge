@@ -112,6 +112,7 @@ main {
 
 .app-window__sent-recieved {
   margin: 1rem;
+  overflow-y: scroll;
 }
 
 .app-window__one-message-received {
