@@ -115,7 +115,10 @@ btnSend.addEventListener("click", function () {
                   <p class="time-delivery">${currentDate.getHours()}:${currentDate.getMinutes()}</p>
                 </div>
               </div>`;
+
   if (appSentRecieved.childNodes.length !== 0) {
     appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
   }
 });
+
+console.log(appInfo);
