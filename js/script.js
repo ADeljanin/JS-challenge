@@ -53,11 +53,21 @@ function addUsersToTheChatList(users) {
 /////// CLICK ON USER ////////
 
 function onUserClick(userId, element) {
+  let infos = document.querySelectorAll(".app-window__info");
+
+  for (const info of infos) {
+    info.classList.remove("active");
+    info.addEventListener("click", function handleClick(e) {
+      info.classList.add("active");
+    });
+  }
   const userMessages = userJsonData[userId - 1].messages;
   appHeader.textContent = userJsonData[userId - 1].name;
+
   function insertUserMessages(userMessages) {
     let allMessages = userMessages.map(function (item) {
       const time = dayjs(item.time).format("hh:mm");
+
       if (item.type === "received") {
         return `<div class="app-window__one-message-${item.type}">
                 <img
@@ -88,9 +98,6 @@ function onUserClick(userId, element) {
     appSentRecieved.innerHTML = allMessages;
   }
   insertUserMessages(userMessages);
-  let info = document.querySelectorAll(".app-window__info");
-
-  console.log(info);
 }
 ////////// SEARCH //////////
 
