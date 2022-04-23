@@ -57,10 +57,13 @@ function onUserClick(userId, element) {
 
   for (const info of infos) {
     info.classList.remove("active");
-    info.addEventListener("click", function handleClick(e) {
+    info.addEventListener("click", function handleClick() {
       info.classList.add("active");
     });
   }
+
+  document.querySelector(".app-window__send").classList.remove("hide");
+
   const userMessages = userJsonData[userId - 1].messages;
   appHeader.textContent = userJsonData[userId - 1].name;
 
@@ -103,28 +106,47 @@ function onUserClick(userId, element) {
 
 searchInput.addEventListener("keyup", function (e) {
   console.log(users);
-  let infos = document.querySelectorAll(".app-window__info");
-  const value = e.target.value.toLowerCase();
+  const searchString = e.target.value.toLowerCase();
+  let infos = document.querySelector(".app-window__info");
+  // const value = e.target.value.toLowerCase();
+  const filteredUsers = users.filter((user) => {
+    return user.fullName.toLowerCase().includes(searchString);
+  });
+  console.log(filteredUsers);
+  console.log(users);
   users.forEach((user) => {
     // for (const user of users) {
-    const isVisible = user.fullName.toLowerCase().includes(value);
-    infos.classList.toggle("hide", !isVisible);
-  });
+    const isVisible = user.fullName.toLowerCase().includes(searchString);
+    console.log(isVisible);
+    console.log(user.classList);
+    infos.forEach((info) => {
+      info.classList.toggle("hide", !isVisible);
+    });
 
-  //  for (const info of infos) {
-  //    info.classList.remove("active");
-  //    info.addEventListener("click", function handleClick(e) {
-  //      info.classList.add("active");
-  //    });
-  //  }
-  //this line up doesnt work because appInfo/user.element is loaded from JS file, and it is unknown at this time, you should find the way to see all loaded elements from JS file
+    // info.classList.remove("active");
+    // info.addEventListener("click", function handleClick() {
+    //   info.classList.add("active");
+  });
 });
+
+//  for (const info of infos) {
+//    info.classList.remove("active");
+//    info.addEventListener("click", function handleClick(e) {
+//      info.classList.add("active");
+//    });
+//  }
+//this line up doesnt work because appInfo/user.element is loaded from JS file, and it is unknown at this time, you should find the way to see all loaded elements from JS file
+
 // });
 
 ////////////////////// SEND BUTTON /////////////////
 btnSend.addEventListener("click", function () {
   let message = document.getElementById("typing").value;
   let currentDate = new Date();
+  let currentHours = currentDate.getHours();
+  currentHours = ("0" + currentHours).slice(-2);
+  let currentMins = currentDate.getMinutes();
+  currentMins = ("0" + currentMins).slice(-2);
   let newHtml = `<div class="app-window__one-message-sent">
                 <img
                 class="app-window__avatar-small"
@@ -133,12 +155,13 @@ btnSend.addEventListener("click", function () {
                 />
                 <div>
                   <p class="sent">${message}</p>
-                  <p class="time-delivery">${currentDate.getHours()}:${currentDate.getMinutes()}</p>
+                  <p class="time-delivery">${currentHours}:${currentMins}</p>
                 </div>
               </div>`;
-
   if (appSentRecieved.childNodes.length !== 0) {
     appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
   }
   document.getElementById("typing").value = "";
+  console.log(newHtml);
+  document.querySelector(".app-window__last-msg").innerHTML = message;
 });
