@@ -119,25 +119,14 @@ searchInput.addEventListener("keyup", function (e) {
     const isVisible = user.fullName.toLowerCase().includes(searchString);
     console.log(isVisible);
     console.log(user.classList);
-    infos.forEach((info) => {
-      info.classList.toggle("hide", !isVisible);
+    users.forEach((info) => {
+      if (!isVisible) {
+        info.classList.toggle("hide");
+      }
+      // info.classList.toggle("hide", !isVisible);
     });
-
-    // info.classList.remove("active");
-    // info.addEventListener("click", function handleClick() {
-    //   info.classList.add("active");
   });
 });
-
-//  for (const info of infos) {
-//    info.classList.remove("active");
-//    info.addEventListener("click", function handleClick(e) {
-//      info.classList.add("active");
-//    });
-//  }
-//this line up doesnt work because appInfo/user.element is loaded from JS file, and it is unknown at this time, you should find the way to see all loaded elements from JS file
-
-// });
 
 ////////////////////// SEND BUTTON /////////////////
 btnSend.addEventListener("click", function () {
@@ -162,6 +151,6 @@ btnSend.addEventListener("click", function () {
     appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
   }
   document.getElementById("typing").value = "";
-  console.log(newHtml);
+
   document.querySelector(".app-window__last-msg").innerHTML = message;
 });
