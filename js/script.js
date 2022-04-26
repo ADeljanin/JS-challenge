@@ -130,6 +130,7 @@ searchInput.addEventListener("keyup", function (e) {
 
 ////////////////////// SEND BUTTON /////////////////
 btnSend.addEventListener("click", function () {
+  let newJson = {};
   let message = document.getElementById("typing").value;
   let currentDate = new Date();
   let currentHours = currentDate.getHours();
@@ -147,9 +148,12 @@ btnSend.addEventListener("click", function () {
                   <p class="time-delivery">${currentHours}:${currentMins}</p>
                 </div>
               </div>`;
-  if (appSentRecieved.childNodes.length !== 0) {
-    appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
-  }
+
+  appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
+  newJson = `"text": "${message}"`;
+  // console.log(newJson);
+  // let wholeNewJson = userJsonData.push("aca");
+  console.log(userJsonData);
   document.getElementById("typing").value = "";
 
   document.querySelector(".app-window__last-msg").innerHTML = message;
