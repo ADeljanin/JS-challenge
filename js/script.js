@@ -57,9 +57,9 @@ function onUserClick(userId, element) {
 
   for (const info of infos) {
     info.classList.remove("active");
-    info.addEventListener("click", function handleClick() {
-      info.classList.add("active");
-    });
+    // info.addEventListener("click", function handleClick() {
+    element.classList.add("active");
+    // });
   }
 
   document.querySelector(".app-window__send").classList.remove("hide");
@@ -150,10 +150,10 @@ btnSend.addEventListener("click", function () {
               </div>`;
 
   appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
-  newJson = `"text": "${message}"`;
+  // newJson = `"text": "${message}"`;
   // console.log(newJson);
   // let wholeNewJson = userJsonData.push("aca");
-  console.log(userJsonData);
+  // console.log(userJsonData);
   document.getElementById("typing").value = "";
 
   document.querySelector(".app-window__last-msg").innerHTML = message;
