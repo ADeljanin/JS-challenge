@@ -4,19 +4,23 @@ const appUsers = document.querySelector(".app-window__users");
 const appInfo = document.querySelectorAll(".app-window__info");
 const appHeader = document.querySelector(".app-window__header");
 const appMessages = document.querySelector(".app-window__messages");
+const lastInputMessage = document.querySelectorAll(".app-window__last-msg");
 const appSentRecieved = document.querySelector(".app-window__sent-recieved");
 const searchInput = document.querySelector(".app-window__search");
 const btnSend = document.querySelector(".app-window__button");
 const appSend = document.querySelectorAll(".app-window__send");
 const sendMessageInput = document.getElementById("typing");
 let userJsonData;
+let activeUser;
+let filteredUserJsonData;
 let activeUserId;
 
 fetch("chat.json")
   .then((response) => response.json())
   .then((data) => {
     userJsonData = data;
-    addUsersToTheChatList(userJsonData);
+    filteredUserJsonData = [...data];
+    addUsersToTheChatList(filteredUserJsonData);
   }); //
 
 /////////////// ALL USERS TO THE CHAT LIST ///////////////
@@ -102,21 +106,27 @@ function onUserClick(userId, element) {
 }
 
 // TODO: update scroll to the bottom after messages are rendered
+// DONE!!
 
 ////////// SEARCH //////////
 
 searchInput.addEventListener("keyup", function (e) {
   const searchString = e.target.value.toLowerCase();
+  // console.log(filteredUserJsonData);
+  const filteredUserJsonData = userJsonData.filter((item) => {
+    return item.name.toLowerCase().includes(searchString);
+  });
 
-  // const filteredUserJsonData = userJsonData.filter(item => item.);
+  addUsersToTheChatList(filteredUserJsonData);
+
+  console.log(filteredUserJsonData);
 });
 
 ////////////////////// SEND BUTTON /////////////////
+
 btnSend.addEventListener("click", function () {
   let message = sendMessageInput.value;
   if (message.length) {
-    let newJson = {};
-
     let currentDate = new Date();
     let currentHours = currentDate.getHours();
     currentHours = ("0" + currentHours).slice(-2);
@@ -136,7 +146,7 @@ btnSend.addEventListener("click", function () {
 
     appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
 
-    const activeUser = userJsonData.find(
+    activeUser = userJsonData.find(
       (item) => item.id.toString() === activeUserId
     );
     activeUser.messages.push({
@@ -147,6 +157,11 @@ btnSend.addEventListener("click", function () {
 
     // clear message
     sendMessageInput.value = "";
+    console.log(activeUser);
+    //add message to the left of the screen, just bellow the user name
+
+    document.querySelector(".app-window__last-msg").textContent =
+      activeUser.messages[activeUser.messages.length - 1].text;
   }
   appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
   //this is to add last message but it only works on first user
