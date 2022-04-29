@@ -8,18 +8,15 @@ const appSentRecieved = document.querySelector(".app-window__sent-recieved");
 const searchInput = document.querySelector(".app-window__search");
 const btnSend = document.querySelector(".app-window__button");
 const appSend = document.querySelectorAll(".app-window__send");
+const sendMessageInput = document.getElementById("typing");
 let userJsonData;
-
-let users = [];
+let activeUserId;
 
 fetch("chat.json")
   .then((response) => response.json())
   .then((data) => {
     userJsonData = data;
     addUsersToTheChatList(userJsonData);
-    users = userJsonData.map((user) => {
-      return { fullName: user.name };
-    });
   }); //
 
 /////////////// ALL USERS TO THE CHAT LIST ///////////////
@@ -53,15 +50,15 @@ function addUsersToTheChatList(users) {
 /////// CLICK ON USER ////////
 
 function onUserClick(userId, element) {
+  activeUserId = userId;
+  // set active background
   let infos = document.querySelectorAll(".app-window__info");
 
   for (const info of infos) {
     info.classList.remove("active");
-    // info.addEventListener("click", function handleClick() {
     element.classList.add("active");
-    // });
   }
-
+  // render user messages
   document.querySelector(".app-window__send").classList.remove("hide");
 
   const userMessages = userJsonData[userId - 1].messages;
@@ -101,43 +98,31 @@ function onUserClick(userId, element) {
     appSentRecieved.innerHTML = allMessages;
   }
   insertUserMessages(userMessages);
+  appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
 }
+
+// TODO: update scroll to the bottom after messages are rendered
+
 ////////// SEARCH //////////
 
 searchInput.addEventListener("keyup", function (e) {
-  console.log(users);
   const searchString = e.target.value.toLowerCase();
-  let infos = document.querySelector(".app-window__info");
-  // const value = e.target.value.toLowerCase();
-  const filteredUsers = users.filter((user) => {
-    return user.fullName.toLowerCase().includes(searchString);
-  });
-  console.log(filteredUsers);
-  console.log(users);
-  users.forEach((user) => {
-    // for (const user of users) {
-    const isVisible = user.fullName.toLowerCase().includes(searchString);
-    console.log(isVisible);
-    console.log(user.classList);
-    users.forEach((info) => {
-      if (!isVisible) {
-        info.classList.toggle("hide");
-      }
-      // info.classList.toggle("hide", !isVisible);
-    });
-  });
+
+  // const filteredUserJsonData = userJsonData.filter(item => item.);
 });
 
 ////////////////////// SEND BUTTON /////////////////
 btnSend.addEventListener("click", function () {
-  let newJson = {};
-  let message = document.getElementById("typing").value;
-  let currentDate = new Date();
-  let currentHours = currentDate.getHours();
-  currentHours = ("0" + currentHours).slice(-2);
-  let currentMins = currentDate.getMinutes();
-  currentMins = ("0" + currentMins).slice(-2);
-  let newHtml = `<div class="app-window__one-message-sent">
+  let message = sendMessageInput.value;
+  if (message.length) {
+    let newJson = {};
+
+    let currentDate = new Date();
+    let currentHours = currentDate.getHours();
+    currentHours = ("0" + currentHours).slice(-2);
+    let currentMins = currentDate.getMinutes();
+    currentMins = ("0" + currentMins).slice(-2);
+    let newHtml = `<div class="app-window__one-message-sent">
                 <img
                 class="app-window__avatar-small"
                 src="./img/img_avatar.png"
@@ -149,12 +134,30 @@ btnSend.addEventListener("click", function () {
                 </div>
               </div>`;
 
-  appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
+    appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
+
+    const activeUser = userJsonData.find(
+      (item) => item.id.toString() === activeUserId
+    );
+    activeUser.messages.push({
+      type: "sent",
+      time: currentDate.toISOString(),
+      text: message,
+    });
+
+    // clear message
+    sendMessageInput.value = "";
+  }
+  appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
+  //this is to add last message but it only works on first user
+  // document.querySelector(".app-window__last-msg").innerHTML = message;
+  // TODO: update user last message
+
   // newJson = `"text": "${message}"`;
   // console.log(newJson);
   // let wholeNewJson = userJsonData.push("aca");
   // console.log(userJsonData);
-  document.getElementById("typing").value = "";
+  // document.getElementById("typing").value = "";
 
-  document.querySelector(".app-window__last-msg").innerHTML = message;
+  // document.querySelector(".app-window__last-msg").innerHTML = message;
 });
