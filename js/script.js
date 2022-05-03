@@ -161,10 +161,13 @@ btnSend.addEventListener("click", function () {
     console.log(activeUser);
     //add message to the left of the screen, just bellow the user name
 
-    document.querySelector(".app-window__last-msg").textContent =
-      activeUser.messages[activeUser.messages.length - 1].text;
+    document.querySelector(".app-window__info.active p").textContent = message;
   }
   appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
+
+  let content = document.querySelector(".app-window__info.active");
+  let parent = content.parentNode;
+  parent.insertBefore(content, parent.firstChild);
   //this is to add last message but it only works on first user
   // document.querySelector(".app-window__last-msg").innerHTML = message;
   // TODO: update user last message
