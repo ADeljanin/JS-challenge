@@ -49,7 +49,7 @@ function addUsersToTheChatList(users) {
     </div>
     `;
   });
-  appUsers.insertAdjacentHTML("beforeend", allUsersHtml);
+  appUsers.innerHTML = allUsersHtml;
 }
 
 /////// CLICK ON USER ////////
