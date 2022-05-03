@@ -14,6 +14,7 @@ let userJsonData;
 let activeUser;
 let filteredUserJsonData;
 let activeUserId;
+let clearUsers = [];
 
 fetch("chat.json")
   .then((response) => response.json())
