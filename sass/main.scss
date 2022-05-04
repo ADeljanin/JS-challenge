@@ -1,3 +1,44 @@
+////////// MEDIA QUERY MANAGER /////////////////////
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800]   Normal styles apply
+1800px + :      Big desktop
+
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
+
+1em = 16px
+*/
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } //600px  phone
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px tablet portrait
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //1200px tablet landscape
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800 big desktop
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +48,13 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+
+  @include respond(tab-land) {
+    font-size: 60%;
+  }
+  @include respond(tab-port) {
+    font-size: 50%;
+  }
 }
 
 body {
@@ -15,6 +63,10 @@ body {
   background-image: url(../img/doodles.png);
   height: 100vh;
   padding: 2rem;
+
+  // @include respond(tab-port) {
+  //   font-size: 40%;
+  // }
 }
 
 main {
@@ -34,6 +86,10 @@ main {
   max-width: 100rem;
   height: 85vh;
   overflow: hidden;
+
+  @include respond(phone) {
+    display: block;
+  }
 
   &__users {
     width: 100%;
@@ -164,6 +220,10 @@ main {
     justify-content: space-between;
     overflow-y: scroll;
     padding: 3rem 0;
+
+    @include respond(phone) {
+      display: none;
+    }
   }
   &__all-messages {
     display: none;
@@ -236,3 +296,7 @@ main {
     background: rgb(249, 190, 190);
   }
 }
+
+//  @include respond(tab-port) {
+//             width: 100%;
+//         }

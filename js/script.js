@@ -152,7 +152,6 @@ btnSend.addEventListener("click", function () {
 
     // clear message
     sendMessageInput.value = "";
-    console.log(activeUser);
 
     //add message to the left of the screen, just bellow the user name
     document.querySelector(".app-window__info.active p").textContent = message;
@@ -174,3 +173,5 @@ btnSend.addEventListener("click", function () {
   };
   content.animate(userBubble, userTiming);
 });
+
+/////////////// RESPONSIVE DESIGN ////////////////////////
