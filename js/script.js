@@ -2,6 +2,7 @@
 
 const appUsers = document.querySelector(".app-window__users");
 const appInfo = document.querySelectorAll(".app-window__info");
+const appLeftSide = document.querySelectorAll(".app-window__left");
 const userContainer = document.querySelector(".app-window__left");
 const appHeader = document.querySelector(".app-window__header");
 const appMessages = document.querySelector(".app-window__messages");
@@ -25,7 +26,10 @@ fetch("chat.json")
     userJsonData = data;
     filteredUserJsonData = [...data];
     addUsersToTheChatList(filteredUserJsonData);
-  }); //
+  })
+  .catch(function (err) {
+    alert(err);
+  });
 
 /////////////// ALL USERS TO THE CHAT LIST ///////////////
 function addUsersToTheChatList(users) {
@@ -191,6 +195,7 @@ if (window.matchMedia("(max-width: 600px)").matches) {
 btnBack.addEventListener("click", function () {
   userContainer.classList.remove("hide");
   appMessages.classList.remove("show");
+  appLeftSide.scrollIntoView();
 });
 
 window.addEventListener("resize", function () {
