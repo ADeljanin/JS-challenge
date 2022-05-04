@@ -39,9 +39,9 @@ main {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
     background-color: rgb(255, 255, 255);
     height: 80vh;
+    gap: 0.2rem;
   }
 
   &__left {
@@ -51,6 +51,18 @@ main {
     align-items: center;
     overflow-y: scroll;
     padding-top: 2rem;
+    &::-webkit-scrollbar {
+      width: 1rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(224, 31, 31, 0.3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(249, 190, 190, 0.5);
+      // outline: 1px solid slategrey;
+    }
   }
   &__search {
     padding: 2rem 1rem;
@@ -85,6 +97,18 @@ main {
   &__sent-recieved {
     margin: 1rem;
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 1rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(207, 207, 207, 0.3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(249, 190, 190, 0.5);
+      outline: 1px solid rgb(231, 236, 241);
+    }
   }
   &__one-message-received {
     margin-bottom: 1.5rem;
@@ -98,17 +122,20 @@ main {
     text-align: left;
     display: flex;
     gap: 1rem;
+    align-items: center;
   }
 
   &__info {
     display: flex;
     align-items: center;
-
+    position: relative;
     gap: 2rem;
-    padding-left: 2rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
 
     &:hover {
       cursor: pointer;
+      background-color: rgba(249, 190, 190, 0.5);
     }
   }
 
@@ -123,8 +150,13 @@ main {
   }
 
   &__last-msg {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 16rem;
     overflow: hidden;
     color: grey;
+    position: absolute;
   }
   &__messages {
     display: flex;
@@ -198,5 +230,9 @@ main {
 }
 
 .active {
-  background-image: url(../img/dust_scratches.png);
+  background: rgb(249, 190, 190);
+
+  &:hover {
+    background: rgb(249, 190, 190);
+  }
 }

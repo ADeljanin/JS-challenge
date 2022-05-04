@@ -52,7 +52,7 @@ function addUsersToTheChatList(users) {
   appUsers.innerHTML = allUsersHtml;
 }
 
-/////// CLICK ON USER ////////
+//////////////////// CLICK ON USER //////////////////////////
 
 function onUserClick(userId, element) {
   activeUserId = userId;
@@ -106,24 +106,18 @@ function onUserClick(userId, element) {
   appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
 }
 
-// TODO: update scroll to the bottom after messages are rendered
-// DONE!!
-
-////////// SEARCH //////////
+///////////////////////// SEARCH ///////////////////////////////
 
 searchInput.addEventListener("keyup", function (e) {
   const searchString = e.target.value.toLowerCase();
-  // console.log(filteredUserJsonData);
+
   const filteredUserJsonData = userJsonData.filter((item) => {
     return item.name.toLowerCase().includes(searchString);
   });
-
   addUsersToTheChatList(filteredUserJsonData);
-
-  console.log(filteredUserJsonData);
 });
 
-////////////////////// SEND BUTTON /////////////////
+////////////////////// SEND BUTTON ////////////////////////////
 
 btnSend.addEventListener("click", function () {
   let message = sendMessageInput.value;
@@ -159,24 +153,24 @@ btnSend.addEventListener("click", function () {
     // clear message
     sendMessageInput.value = "";
     console.log(activeUser);
-    //add message to the left of the screen, just bellow the user name
 
+    //add message to the left of the screen, just bellow the user name
     document.querySelector(".app-window__info.active p").textContent = message;
   }
+  // scroll to the last message in chat history
   appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
 
+  // active user goes on top of chat history
   let content = document.querySelector(".app-window__info.active");
   let parent = content.parentNode;
   parent.insertBefore(content, parent.firstChild);
-  //this is to add last message but it only works on first user
-  // document.querySelector(".app-window__last-msg").innerHTML = message;
-  // TODO: update user last message
 
-  // newJson = `"text": "${message}"`;
-  // console.log(newJson);
-  // let wholeNewJson = userJsonData.push("aca");
-  // console.log(userJsonData);
-  // document.getElementById("typing").value = "";
+  // active user animation
+  const userBubble = [{ transform: "scale(1.1)" }, { transform: "scale(1)" }];
 
-  // document.querySelector(".app-window__last-msg").innerHTML = message;
+  const userTiming = {
+    duration: 750,
+    iterations: 1,
+  };
+  content.animate(userBubble, userTiming);
 });
