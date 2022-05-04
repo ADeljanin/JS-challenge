@@ -2,12 +2,15 @@
 
 const appUsers = document.querySelector(".app-window__users");
 const appInfo = document.querySelectorAll(".app-window__info");
+const userContainer = document.querySelector(".app-window__left");
 const appHeader = document.querySelector(".app-window__header");
 const appMessages = document.querySelector(".app-window__messages");
 const lastInputMessage = document.querySelectorAll(".app-window__last-msg");
 const appSentRecieved = document.querySelector(".app-window__sent-recieved");
 const searchInput = document.querySelector(".app-window__search");
 const btnSend = document.querySelector(".app-window__button");
+const btnBack = document.querySelector(".btn-arrow");
+
 const appSend = document.querySelectorAll(".app-window__send");
 const sendMessageInput = document.getElementById("typing");
 let userJsonData;
@@ -104,6 +107,11 @@ function onUserClick(userId, element) {
   }
   insertUserMessages(userMessages);
   appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
+
+  if (window.matchMedia("(max-width: 600px)").matches) {
+    userContainer.classList.add("hide");
+    appMessages.classList.add("show");
+  }
 }
 
 ///////////////////////// SEARCH ///////////////////////////////
@@ -175,3 +183,25 @@ btnSend.addEventListener("click", function () {
 });
 
 /////////////// RESPONSIVE DESIGN ////////////////////////
+
+if (window.matchMedia("(max-width: 600px)").matches) {
+  btnBack.classList.remove("hide");
+}
+
+btnBack.addEventListener("click", function () {
+  userContainer.classList.remove("hide");
+  appMessages.classList.remove("show");
+});
+
+window.addEventListener("resize", function () {
+  if (window.innerWidth > 600) {
+    userContainer.classList.remove("hide");
+    appMessages.classList.remove("show");
+    btnBack.classList.add("hide");
+  }
+});
+window.addEventListener("resize", function () {
+  if (window.innerWidth < 600) {
+    btnBack.classList.remove("hide");
+  }
+});
