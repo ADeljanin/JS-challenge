@@ -112,6 +112,7 @@ main {
           align-items: center;
   overflow-y: scroll;
   padding-top: 2rem;
+  height: 85vh;
 }
 
 .app-window__left::-webkit-scrollbar {
