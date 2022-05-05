@@ -2,7 +2,7 @@
 
 const appUsers = document.querySelector(".app-window__users");
 const appInfo = document.querySelectorAll(".app-window__info");
-const appLeftSide = document.querySelectorAll(".app-window__left");
+const appLeftSide = document.querySelector(".app-window__left");
 const userContainer = document.querySelector(".app-window__left");
 const appHeader = document.querySelector(".app-window__header");
 const appMessages = document.querySelector(".app-window__messages");
@@ -195,7 +195,10 @@ if (window.matchMedia("(max-width: 600px)").matches) {
 btnBack.addEventListener("click", function () {
   userContainer.classList.remove("hide");
   appMessages.classList.remove("show");
-  appLeftSide.scrollIntoView();
+  appLeftSide.scroll({
+    top: 0,
+    behavior: "smooth",
+  });
 });
 
 window.addEventListener("resize", function () {
