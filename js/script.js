@@ -184,13 +184,13 @@ btnSend.addEventListener("click", function () {
     iterations: 1,
   };
   content.animate(userBubble, userTiming);
+  appLeftSide.scroll({
+    top: 0,
+    behavior: "smooth",
+  });
 });
 
-/////////////// RESPONSIVE DESIGN ////////////////////////
-
-if (window.matchMedia("(max-width: 600px)").matches) {
-  btnBack.classList.remove("hide");
-}
+////////////////////// BACK BUTTON ////////////////////
 
 btnBack.addEventListener("click", function () {
   userContainer.classList.remove("hide");
@@ -200,6 +200,12 @@ btnBack.addEventListener("click", function () {
     behavior: "smooth",
   });
 });
+
+/////////////// RESPONSIVE DESIGN ////////////////////////
+
+if (window.matchMedia("(max-width: 600px)").matches) {
+  btnBack.classList.remove("hide");
+}
 
 window.addEventListener("resize", function () {
   if (window.innerWidth > 600) {

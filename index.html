@@ -42,10 +42,12 @@
               class="app-window__typing"
               type="text"
               id="typing"
+              onkeydown="if (event.keyCode == 13)
+                        document.getElementById('btn-send').click()"
               placeholder="&#xf0e0; Type a message..."
               style="font-family: Arial, FontAwesome"
             />
-            <button class="app-window__button">Send</button>
+            <button class="app-window__button" id="btn-send">Send</button>
             <ion-icon
               class="app-window__attach"
               name="attach-outline"
