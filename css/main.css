@@ -370,4 +370,9 @@ main {
 .active:hover {
   background: #f9bebe;
 }
+
+.day-sent-recieved {
+  text-align: center;
+  margin-bottom: 1rem;
+}
 /*# sourceMappingURL=main.css.map */

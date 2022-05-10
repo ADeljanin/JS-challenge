@@ -2,7 +2,6 @@
 
 const appUsers = document.querySelector(".app-window__users");
 const appInfo = document.querySelectorAll(".app-window__info");
-const appLeftSide = document.querySelector(".app-window__left");
 const userContainer = document.querySelector(".app-window__left");
 const appHeader = document.querySelector(".app-window__header");
 const appMessages = document.querySelector(".app-window__messages");
@@ -18,7 +17,8 @@ let userJsonData;
 let activeUser;
 let filteredUserJsonData;
 let activeUserId;
-let clearUsers = [];
+let children;
+let editedChildren;
 
 fetch("chat.json")
   .then((response) => response.json())
@@ -63,6 +63,8 @@ function addUsersToTheChatList(users) {
 
 function onUserClick(userId, element) {
   activeUserId = userId;
+  activeUser = userJsonData.find((item) => item.id.toString() === activeUserId);
+
   // set active background
   let infos = document.querySelectorAll(".app-window__info");
 
@@ -77,11 +79,42 @@ function onUserClick(userId, element) {
   appHeader.textContent = userJsonData[userId - 1].name;
 
   function insertUserMessages(userMessages) {
+    let firstDateMessages = dayjs(activeUser.messages[0].time).format(
+      "dddd, DD MMMM YYYY"
+    );
+    let nextDateMessages;
+    let day;
+
+    //   nextDateMessages = dayjs(activeUser.messages[i].time).format(
+    //     "dddd, DD MMMM YYYY"
+    //   );
+    //   console.log(nextDateMessages);
+    // }
+    // console.log(firstDateMessages);
     let allMessages = userMessages.map(function (item) {
       const time = dayjs(item.time).format("hh:mm");
+      // day = dayjs(item.time).format("dddd, DD MMMM YYYY");
+
+      for (let i = 0; i < activeUser.messages.length; i++) {
+        for (let k = i + 1; k < activeUser.messages.length; k++) {
+          if (activeUser.messages[i] != activeUser.messages[k]) {
+            day = dayjs(item.time).format("dddd, DD MMMM YYYY");
+          } else {
+            day = "milena";
+          }
+          // console.log(
+          //   dayjs(activeUser.messages[k].time).format("dddd, DD MMMM YYYY")
+          // );
+        }
+        // console.log(
+        //   dayjs(activeUser.messages[i].time).format("dddd, DD MMMM YYYY")
+        // );
+      }
 
       if (item.type === "received") {
-        return `<div class="app-window__one-message-${item.type}">
+        return `
+              <p class="day-sent-recieved">${day}</p>
+              <div class="app-window__one-message-${item.type}">
                 <img
                 class="app-window__avatar-small"
                 src="./img/img_avatar_${userJsonData[userId - 1].username}.png"
@@ -93,7 +126,9 @@ function onUserClick(userId, element) {
                 </div>
               </div>`;
       } else {
-        return `<div class="app-window__one-message-${item.type}">
+        return `
+              <p class="day-sent-recieved">${day}</p>
+              <div class="app-window__one-message-${item.type}">
                 <img
                 class="app-window__avatar-small"
                 src="./img/img_avatar.png"
@@ -116,6 +151,9 @@ function onUserClick(userId, element) {
     userContainer.classList.add("hide");
     appMessages.classList.add("show");
   }
+
+  children = appSentRecieved.childNodes.length;
+  console.log(children);
 }
 
 ///////////////////////// SEARCH ///////////////////////////////
@@ -134,22 +172,50 @@ searchInput.addEventListener("keyup", function (e) {
 btnSend.addEventListener("click", function () {
   let message = sendMessageInput.value;
   if (message.length) {
+    const weekday = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const month = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
     let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    let currentDay = weekday[currentDate.getDay()];
+    let currentDayInMonth = currentDate.getDate();
+    let currentMonth = month[currentDate.getMonth()];
     let currentHours = currentDate.getHours();
     currentHours = ("0" + currentHours).slice(-2);
     let currentMins = currentDate.getMinutes();
     currentMins = ("0" + currentMins).slice(-2);
-    let newHtml = `<div class="app-window__one-message-sent">
-                <img
-                class="app-window__avatar-small"
-                src="./img/img_avatar.png"
-                alt="user picture"
-                />
-                <div>
-                  <p class="sent">${message}</p>
-                  <p class="time-delivery">${currentHours}:${currentMins}</p>
-                </div>
-              </div>`;
+    let newHtml = `<p class="day-sent-recieved">${currentDay}, ${currentDayInMonth}.${currentMonth}.${currentYear}</p>
+                  <div class="app-window__one-message-sent" id="test">
+                      <img
+                      class="app-window__avatar-small"
+                      src="./img/img_avatar.png"
+                      alt="user picture"
+                      />
+                      <div>
+                        <p class="sent">${message}</p>
+                        <p class="time-delivery">${currentHours}:${currentMins}</p>
+                      </div>
+                    </div>`;
 
     appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
 
@@ -168,6 +234,9 @@ btnSend.addEventListener("click", function () {
     //add message to the left of the screen, just bellow the user name
     document.querySelector(".app-window__info.active p").textContent = message;
   }
+
+  // active user first message date and time
+
   // scroll to the last message in chat history
   appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
 
@@ -184,10 +253,11 @@ btnSend.addEventListener("click", function () {
     iterations: 1,
   };
   content.animate(userBubble, userTiming);
-  appLeftSide.scroll({
+  userContainer.scroll({
     top: 0,
     behavior: "smooth",
   });
+  // console.log(dayjs(activeUser.messages[0].time).format("dddd, DD MMMM YYYY"));
 });
 
 ////////////////////// BACK BUTTON ////////////////////
@@ -195,11 +265,39 @@ btnSend.addEventListener("click", function () {
 btnBack.addEventListener("click", function () {
   userContainer.classList.remove("hide");
   appMessages.classList.remove("show");
-  appLeftSide.scroll({
-    top: 0,
-    behavior: "smooth",
-  });
+
+  //if there is some new message sent, user goes on top, if you just look at messages, on back button the current user is highlighted and there is no scroll on top
+  editedChildren = appSentRecieved.childNodes.length;
+  console.log(editedChildren);
+  if (editedChildren == children) {
+  } else {
+    userContainer.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
 });
+// CODE BELOW IS TRY TO STAY ON SAME USER IF NONE OF THE MESSAGES ARE SENT/RECIEVED, BUT TO SCROLL TO TOP OF THE USER CONTAINER IF SOMETHING HAPPENS////////////////////////////////////////////////////////////////
+// const observer = new MutationObserver(function (mutations_list) {
+//   mutations_list.forEach(function (mutation) {
+//     mutation.addedNodes.forEach(function (added_node) {
+//       if (added_node.id == "test") {
+//         console.log("#child has been added");
+//         userContainer.scroll({
+//           top: 0,
+//           behavior: "smooth",
+//         });
+//         observer.disconnect();
+//       }
+//     });
+//   });
+// });
+
+// observer.observe(document.querySelector(".app-window__sent-recieved"), {
+//   subtree: true,
+//   childList: true,
+// });
+// });
 
 /////////////// RESPONSIVE DESIGN ////////////////////////
 
