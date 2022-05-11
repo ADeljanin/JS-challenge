@@ -13,6 +13,7 @@ const btnBack = document.querySelector(".btn-arrow");
 
 const appSend = document.querySelectorAll(".app-window__send");
 const sendMessageInput = document.getElementById("typing");
+
 let userJsonData;
 let activeUser;
 let filteredUserJsonData;
@@ -93,19 +94,23 @@ function onUserClick(userId, element) {
     // console.log(firstDateMessages);
     let allMessages = userMessages.map(function (item) {
       const time = dayjs(item.time).format("hh:mm");
-      // day = dayjs(item.time).format("dddd, DD MMMM YYYY");
+      // let day = dayjs(item.time).format("dddd, DD MMMM YYYY");
 
       for (let i = 0; i < activeUser.messages.length; i++) {
         for (let k = i + 1; k < activeUser.messages.length; k++) {
-          if (activeUser.messages[i] != activeUser.messages[k]) {
+          console.log(activeUser.messages[i].time);
+          if (activeUser.messages[i].time !== activeUser.messages[k].time) {
             day = dayjs(item.time).format("dddd, DD MMMM YYYY");
+            console.log(day);
           } else {
-            day = "milena";
+            day = "123";
+            console.log(day);
           }
           // console.log(
           //   dayjs(activeUser.messages[k].time).format("dddd, DD MMMM YYYY")
           // );
         }
+        // debugger;
         // console.log(
         //   dayjs(activeUser.messages[i].time).format("dddd, DD MMMM YYYY")
         // );
@@ -145,15 +150,13 @@ function onUserClick(userId, element) {
     appSentRecieved.innerHTML = allMessages;
   }
   insertUserMessages(userMessages);
-  appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
-
   if (window.matchMedia("(max-width: 600px)").matches) {
     userContainer.classList.add("hide");
     appMessages.classList.add("show");
   }
+  appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
 
   children = appSentRecieved.childNodes.length;
-  console.log(children);
 }
 
 ///////////////////////// SEARCH ///////////////////////////////
@@ -257,7 +260,6 @@ btnSend.addEventListener("click", function () {
     top: 0,
     behavior: "smooth",
   });
-  // console.log(dayjs(activeUser.messages[0].time).format("dddd, DD MMMM YYYY"));
 });
 
 ////////////////////// BACK BUTTON ////////////////////
@@ -268,7 +270,6 @@ btnBack.addEventListener("click", function () {
 
   //if there is some new message sent, user goes on top, if you just look at messages, on back button the current user is highlighted and there is no scroll on top
   editedChildren = appSentRecieved.childNodes.length;
-  console.log(editedChildren);
   if (editedChildren == children) {
   } else {
     userContainer.scroll({
