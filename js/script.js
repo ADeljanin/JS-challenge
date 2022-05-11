@@ -277,27 +277,6 @@ btnBack.addEventListener("click", function () {
     });
   }
 });
-// CODE BELOW IS TRY TO STAY ON SAME USER IF NONE OF THE MESSAGES ARE SENT/RECIEVED, BUT TO SCROLL TO TOP OF THE USER CONTAINER IF SOMETHING HAPPENS////////////////////////////////////////////////////////////////
-// const observer = new MutationObserver(function (mutations_list) {
-//   mutations_list.forEach(function (mutation) {
-//     mutation.addedNodes.forEach(function (added_node) {
-//       if (added_node.id == "test") {
-//         console.log("#child has been added");
-//         userContainer.scroll({
-//           top: 0,
-//           behavior: "smooth",
-//         });
-//         observer.disconnect();
-//       }
-//     });
-//   });
-// });
-
-// observer.observe(document.querySelector(".app-window__sent-recieved"), {
-//   subtree: true,
-//   childList: true,
-// });
-// });
 
 /////////////// RESPONSIVE DESIGN ////////////////////////
 
