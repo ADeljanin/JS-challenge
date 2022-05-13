@@ -99,6 +99,7 @@ main {
     background-color: rgb(255, 255, 255);
     height: 80vh;
     gap: 0.2rem;
+    overflow-x: hidden;
   }
 
   &__left {

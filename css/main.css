@@ -96,6 +96,7 @@ main {
   background-color: white;
   height: 80vh;
   gap: 0.2rem;
+  overflow-x: hidden;
 }
 
 .app-window__left {

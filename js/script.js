@@ -39,7 +39,6 @@ function addUsersToTheChatList(users) {
   users.forEach((element) => {
     //Adding all users names from json file
     allUsersHtml += `
-    
     <div class="app-window__info" data-id="${
       element.id
     }" onclick="onUserClick('${element.id}', this)">
@@ -79,77 +78,8 @@ function onUserClick(userId, element) {
   const userMessages = userJsonData[userId - 1].messages;
   appHeader.textContent = userJsonData[userId - 1].name;
 
-  function insertUserMessages(userMessages) {
-    let firstDateMessages = dayjs(activeUser.messages[0].time).format(
-      "dddd, DD MMMM YYYY"
-    );
-    let nextDateMessages;
-    let day;
+  insertUserMessages(userMessages, userId);
 
-    //   nextDateMessages = dayjs(activeUser.messages[i].time).format(
-    //     "dddd, DD MMMM YYYY"
-    //   );
-    //   console.log(nextDateMessages);
-    // }
-    // console.log(firstDateMessages);
-    let allMessages = userMessages.map(function (item) {
-      const time = dayjs(item.time).format("hh:mm");
-      // let day = dayjs(item.time).format("dddd, DD MMMM YYYY");
-
-      for (let i = 0; i < activeUser.messages.length; i++) {
-        for (let k = i + 1; k < activeUser.messages.length; k++) {
-          console.log(activeUser.messages[i].time);
-          if (activeUser.messages[i].time !== activeUser.messages[k].time) {
-            day = dayjs(item.time).format("dddd, DD MMMM YYYY");
-            console.log(day);
-          } else {
-            day = "123";
-            console.log(day);
-          }
-          // console.log(
-          //   dayjs(activeUser.messages[k].time).format("dddd, DD MMMM YYYY")
-          // );
-        }
-        // debugger;
-        // console.log(
-        //   dayjs(activeUser.messages[i].time).format("dddd, DD MMMM YYYY")
-        // );
-      }
-
-      if (item.type === "received") {
-        return `
-              <p class="day-sent-recieved">${day}</p>
-              <div class="app-window__one-message-${item.type}">
-                <img
-                class="app-window__avatar-small"
-                src="./img/img_avatar_${userJsonData[userId - 1].username}.png"
-                alt="user picture"
-                />
-                <div>
-                  <p class="${item.type}">${item.text}</p>
-                  <p class="time-delivery">${time}</p>
-                </div>
-              </div>`;
-      } else {
-        return `
-              <p class="day-sent-recieved">${day}</p>
-              <div class="app-window__one-message-${item.type}">
-                <img
-                class="app-window__avatar-small"
-                src="./img/img_avatar.png"
-                alt="user picture"
-                />
-                <div>
-                  <p class="${item.type}">${item.text}</p>
-                  <p class="time-delivery">${time}</p>
-                </div>
-              </div>`;
-      }
-    });
-    allMessages = allMessages.join("");
-    appSentRecieved.innerHTML = allMessages;
-  }
-  insertUserMessages(userMessages);
   if (window.matchMedia("(max-width: 600px)").matches) {
     userContainer.classList.add("hide");
     appMessages.classList.add("show");
@@ -159,6 +89,76 @@ function onUserClick(userId, element) {
   children = appSentRecieved.childNodes.length;
 }
 
+function insertUserMessages(userMessages, userId) {
+  const groupedMessagesByDate = {};
+
+  userMessages.forEach((message) => {
+    const newDate = new Date(message.time);
+    const weekday = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    let currentDay = weekday[newDate.getDay()];
+    const justDate = `${currentDay}, ${newDate.getDate()}.${
+      newDate.getMonth() + 1
+    }.${newDate.getFullYear()}`;
+    if (groupedMessagesByDate[justDate]) {
+      groupedMessagesByDate[justDate].push(message);
+    } else {
+      groupedMessagesByDate[justDate] = [message];
+    }
+  });
+
+  console.log(groupedMessagesByDate);
+  // console.log(Object.keys(groupedMessagesByDate));
+  for (let oneDateMessage in groupedMessagesByDate) {
+    console.log(oneDateMessage);
+  }
+  let allMessages = userMessages.map(function (item) {
+    const time = dayjs(item.time).format("hh:mm");
+
+    if (item.type === "received") {
+      return `
+            <p class="day-sent-recieved">${Object.keys(
+              groupedMessagesByDate
+            )}</p>
+            <div class="app-window__one-message-${item.type}">
+              <img
+              class="app-window__avatar-small"
+              src="./img/img_avatar_${userJsonData[userId - 1].username}.png"
+              alt="user picture"
+              />
+              <div>
+                <p class="${item.type}">${item.text}</p>
+                <p class="time-delivery">${time}</p>
+              </div>
+            </div>`;
+    } else {
+      return `
+            <p class="day-sent-recieved">${Object.keys(
+              groupedMessagesByDate
+            )}</p>
+            <div class="app-window__one-message-${item.type}">
+              <img
+              class="app-window__avatar-small"
+              src="./img/img_avatar.png"
+              alt="user picture"
+              />
+              <div>
+                <p class="${item.type}">${item.text}</p>
+                <p class="time-delivery">${time}</p>
+              </div>
+            </div>`;
+    }
+  });
+  allMessages = allMessages.join("");
+  appSentRecieved.innerHTML = allMessages;
+}
 ///////////////////////// SEARCH ///////////////////////////////
 
 searchInput.addEventListener("keyup", function (e) {
@@ -248,7 +248,10 @@ btnSend.addEventListener("click", function () {
   let parent = content.parentNode;
   parent.insertBefore(content, parent.firstChild);
 
-  // active user animation
+  addActiveUserChangeAnimation(content);
+});
+
+function addActiveUserChangeAnimation(content) {
   const userBubble = [{ transform: "scale(1.1)" }, { transform: "scale(1)" }];
 
   const userTiming = {
@@ -260,7 +263,7 @@ btnSend.addEventListener("click", function () {
     top: 0,
     behavior: "smooth",
   });
-});
+}
 
 ////////////////////// BACK BUTTON ////////////////////
 
