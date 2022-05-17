@@ -11,6 +11,7 @@ const searchInput = document.querySelector(".app-window__search");
 const btnSend = document.querySelector(".app-window__button");
 const btnBack = document.querySelector(".btn-arrow");
 
+const messagesDate = document.querySelector(".day-date-message");
 const appSend = document.querySelectorAll(".app-window__send");
 const sendMessageInput = document.getElementById("typing");
 
@@ -115,50 +116,49 @@ function insertUserMessages(userMessages, userId) {
   });
 
   console.log(groupedMessagesByDate);
-  // console.log(Object.keys(groupedMessagesByDate));
-  for (let oneDateMessage in groupedMessagesByDate) {
+  // console.log(userMessages);
+  let oneDateMessage;
+  for (oneDateMessage in groupedMessagesByDate) {
     console.log(oneDateMessage);
   }
+
   let allMessages = userMessages.map(function (item) {
     const time = dayjs(item.time).format("hh:mm");
 
     if (item.type === "received") {
       return `
-            <p class="day-sent-recieved">${Object.keys(
-              groupedMessagesByDate
-            )}</p>
-            <div class="app-window__one-message-${item.type}">
-              <img
-              class="app-window__avatar-small"
-              src="./img/img_avatar_${userJsonData[userId - 1].username}.png"
-              alt="user picture"
-              />
-              <div>
-                <p class="${item.type}">${item.text}</p>
-                <p class="time-delivery">${time}</p>
-              </div>
-            </div>`;
+             <p class="day-date-message">${oneDateMessage}</p>
+             <div class="app-window__one-message-${item.type}">
+               <img
+               class="app-window__avatar-small"
+               src="./img/img_avatar_${userJsonData[userId - 1].username}.png"
+               alt="user picture"
+               />
+               <div>
+                 <p class="${item.type}">${item.text}</p>
+                 <p class="time-delivery">${time}</p>
+               </div>
+             </div>`;
     } else {
       return `
-            <p class="day-sent-recieved">${Object.keys(
-              groupedMessagesByDate
-            )}</p>
-            <div class="app-window__one-message-${item.type}">
-              <img
-              class="app-window__avatar-small"
-              src="./img/img_avatar.png"
-              alt="user picture"
-              />
-              <div>
-                <p class="${item.type}">${item.text}</p>
-                <p class="time-delivery">${time}</p>
-              </div>
-            </div>`;
+             <p class="day-date-message">${oneDateMessage}</p>
+             <div class="app-window__one-message-${item.type}">
+               <img
+               class="app-window__avatar-small"
+               src="./img/img_avatar.png"
+               alt="user picture"
+               />
+               <div>
+                 <p class="${item.type}">${item.text}</p>
+                 <p class="time-delivery">${time}</p>
+               </div>
+             </div>`;
     }
   });
   allMessages = allMessages.join("");
   appSentRecieved.innerHTML = allMessages;
 }
+
 ///////////////////////// SEARCH ///////////////////////////////
 
 searchInput.addEventListener("keyup", function (e) {
