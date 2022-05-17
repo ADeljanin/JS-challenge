@@ -15,6 +15,30 @@ const messagesDate = document.querySelector(".day-date-message");
 const appSend = document.querySelectorAll(".app-window__send");
 const sendMessageInput = document.getElementById("typing");
 
+const weekday = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+const month = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 let userJsonData;
 let activeUser;
 let filteredUserJsonData;
@@ -79,8 +103,10 @@ function onUserClick(userId, element) {
   const userMessages = userJsonData[userId - 1].messages;
   appHeader.textContent = userJsonData[userId - 1].name;
 
-  insertUserMessages(userMessages, userId);
+  const groupedMessagesByDate = groupMessagesByDate(userMessages);
+  renderMessagesInContainer(groupedMessagesByDate, userId);
 
+  // this is on click event, so it is done in JS file
   if (window.matchMedia("(max-width: 600px)").matches) {
     userContainer.classList.add("hide");
     appMessages.classList.add("show");
@@ -90,24 +116,38 @@ function onUserClick(userId, element) {
   children = appSentRecieved.childNodes.length;
 }
 
-function insertUserMessages(userMessages, userId) {
+function renderMessagesInContainer(groupedMessagesByDate, userId) {
+  let messagesContent = "";
+
+  for (let groupedDate in groupedMessagesByDate) {
+    messagesContent += `<p class="day-sent-recieved">${groupedDate}</p>`;
+
+    const groupedMessages = groupedMessagesByDate[groupedDate];
+
+    groupedMessages.forEach((message) => {
+      const time = dayjs(message.time).format("hh:mm");
+      if (message.type === "received") {
+        const username = userJsonData[userId - 1].username;
+        messagesContent += getReceivedMessageTemplate(message, time, username);
+      } else {
+        messagesContent += getSentMessageTemplate(message, time);
+      }
+    });
+  }
+
+  appSentRecieved.innerHTML = messagesContent;
+}
+
+function groupMessagesByDate(userMessages) {
   const groupedMessagesByDate = {};
 
   userMessages.forEach((message) => {
     const newDate = new Date(message.time);
-    const weekday = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
     let currentDay = weekday[newDate.getDay()];
     const justDate = `${currentDay}, ${newDate.getDate()}.${
       newDate.getMonth() + 1
     }.${newDate.getFullYear()}`;
+
     if (groupedMessagesByDate[justDate]) {
       groupedMessagesByDate[justDate].push(message);
     } else {
@@ -115,51 +155,40 @@ function insertUserMessages(userMessages, userId) {
     }
   });
 
-  console.log(groupedMessagesByDate);
-  // console.log(userMessages);
-  let oneDateMessage;
-  for (oneDateMessage in groupedMessagesByDate) {
-    console.log(oneDateMessage);
-  }
-
-  let allMessages = userMessages.map(function (item) {
-    const time = dayjs(item.time).format("hh:mm");
-
-    if (item.type === "received") {
-      return `
-             <p class="day-date-message">${oneDateMessage}</p>
-             <div class="app-window__one-message-${item.type}">
-               <img
-               class="app-window__avatar-small"
-               src="./img/img_avatar_${userJsonData[userId - 1].username}.png"
-               alt="user picture"
-               />
-               <div>
-                 <p class="${item.type}">${item.text}</p>
-                 <p class="time-delivery">${time}</p>
-               </div>
-             </div>`;
-    } else {
-      return `
-             <p class="day-date-message">${oneDateMessage}</p>
-             <div class="app-window__one-message-${item.type}">
-               <img
-               class="app-window__avatar-small"
-               src="./img/img_avatar.png"
-               alt="user picture"
-               />
-               <div>
-                 <p class="${item.type}">${item.text}</p>
-                 <p class="time-delivery">${time}</p>
-               </div>
-             </div>`;
-    }
-  });
-  allMessages = allMessages.join("");
-  appSentRecieved.innerHTML = allMessages;
+  return groupedMessagesByDate;
 }
 
-///////////////////////// SEARCH ///////////////////////////////
+function getReceivedMessageTemplate(message, time, username) {
+  return `
+    <div class="app-window__one-message-${message.type}">
+      <img
+      class="app-window__avatar-small"
+      src="./img/img_avatar_${username}.png"
+      alt="user picture"
+      />
+      <div>
+        <p class="${message.type}">${message.text}</p>
+        <p class="time-delivery">${time}</p>
+      </div>
+    </div>`;
+}
+
+function getSentMessageTemplate(message, time) {
+  return `
+    <div class="app-window__one-message-${message.type}">
+      <img
+      class="app-window__avatar-small"
+      src="./img/img_avatar.png"
+      alt="user picture"
+      />
+      <div>
+        <p class="${message.type}">${message.text}</p>
+        <p class="time-delivery">${time}</p>
+      </div>
+    </div>`;
+}
+
+///////////////////////// SEARCH BAR ///////////////////////////////
 
 searchInput.addEventListener("keyup", function (e) {
   const searchString = e.target.value.toLowerCase();
@@ -175,29 +204,6 @@ searchInput.addEventListener("keyup", function (e) {
 btnSend.addEventListener("click", function () {
   let message = sendMessageInput.value;
   if (message.length) {
-    const weekday = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    const month = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
     let currentDate = new Date();
     let currentYear = currentDate.getFullYear();
     let currentDay = weekday[currentDate.getDay()];
@@ -207,29 +213,36 @@ btnSend.addEventListener("click", function () {
     currentHours = ("0" + currentHours).slice(-2);
     let currentMins = currentDate.getMinutes();
     currentMins = ("0" + currentMins).slice(-2);
-    let newHtml = `<p class="day-sent-recieved">${currentDay}, ${currentDayInMonth}.${currentMonth}.${currentYear}</p>
-                  <div class="app-window__one-message-sent" id="test">
-                      <img
-                      class="app-window__avatar-small"
-                      src="./img/img_avatar.png"
-                      alt="user picture"
-                      />
-                      <div>
-                        <p class="sent">${message}</p>
-                        <p class="time-delivery">${currentHours}:${currentMins}</p>
-                      </div>
-                    </div>`;
 
-    appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
-
-    activeUser = userJsonData.find(
-      (item) => item.id.toString() === activeUserId
-    );
-    activeUser.messages.push({
+    const newMessage = {
       type: "sent",
       time: currentDate.toISOString(),
       text: message,
-    });
+    };
+    console.log(newMessage);
+    console.log(dayjs(newMessage.time).format("DD.MM.YYYY"));
+    activeUser = userJsonData.find(
+      (item) => item.id.toString() === activeUserId
+    );
+    activeUser.messages.push(newMessage);
+    let activeUserLastMessage = activeUser.messages.slice(-1);
+    console.log(dayjs(activeUserLastMessage[0].time).format("DD.MM.YYYY"));
+    // const lastMessageDate =
+
+    const time = `${currentHours}:${currentMins}`;
+
+    let newHtml = `<p class="day-sent-recieved">${currentDay}, ${currentDayInMonth}.${currentMonth}.${currentYear}</p>
+                  ${getSentMessageTemplate(newMessage, time)}`;
+    if (
+      dayjs(newMessage.time).format("DD.MM.YYYY") ==
+      dayjs(activeUserLastMessage[0].time).format("DD.MM.YYYY")
+    ) {
+      newHtml = `${getSentMessageTemplate(newMessage, time)}`;
+    } else {
+      console.log("nothing happened");
+    }
+
+    appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
 
     // clear message
     sendMessageInput.value = "";
@@ -237,8 +250,6 @@ btnSend.addEventListener("click", function () {
     //add message to the left of the screen, just bellow the user name
     document.querySelector(".app-window__info.active p").textContent = message;
   }
-
-  // active user first message date and time
 
   // scroll to the last message in chat history
   appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
@@ -271,17 +282,21 @@ btnBack.addEventListener("click", function () {
   userContainer.classList.remove("hide");
   appMessages.classList.remove("show");
 
-  //if there is some new message sent, user goes on top, if you just look at messages, on back button the current user is highlighted and there is no scroll on top
+  focusOnActiveUser();
+});
+
+function focusOnActiveUser() {
   editedChildren = appSentRecieved.childNodes.length;
   if (editedChildren == children) {
   } else {
-    userContainer.scroll({
+    appUsers.scroll({
       top: 0,
       behavior: "smooth",
     });
   }
-});
+}
 
+// apply this in css file
 /////////////// RESPONSIVE DESIGN ////////////////////////
 
 if (window.matchMedia("(max-width: 600px)").matches) {
