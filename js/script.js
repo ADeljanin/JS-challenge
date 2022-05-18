@@ -228,18 +228,16 @@ btnSend.addEventListener("click", function () {
     // console.log(dayjs(activeUserLastMessage[0].time).format("DD.MM.YYYY"));
     // const lastMessageDate =
 
-    const time = `${currentHours}:${currentMins}`;
+    let newHtml = "";
 
-    let newHtml = `<p class="day-sent-recieved">${currentDay}, ${currentDayInMonth}.${currentMonth}.${currentYear}</p>
-                  ${getSentMessageTemplate(newMessage, time)}`;
     if (
-      dayjs(newMessage.time).format("DD.MM.YYYY") ==
+      dayjs(newMessage.time).format("DD.MM.YYYY") !==
       dayjs(activeUserLastMessage[0].time).format("DD.MM.YYYY")
     ) {
-      newHtml = `${getSentMessageTemplate(newMessage, time)}`;
-    } else {
-      console.log("nothing happened");
+      newHtml += `<p class="day-sent-recieved">${currentDay}, ${currentDayInMonth}.${currentMonth}.${currentYear}</p>`;
     }
+    const time = `${currentHours}:${currentMins}`;
+    newHtml += `${getSentMessageTemplate(newMessage, time)}`;
 
     appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
 
