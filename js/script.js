@@ -157,7 +157,6 @@ function groupMessagesByDate(userMessages) {
 
   return groupedMessagesByDate;
 }
-
 function getReceivedMessageTemplate(message, time, username) {
   return `
     <div class="app-window__one-message-${message.type}">
@@ -219,14 +218,14 @@ btnSend.addEventListener("click", function () {
       time: currentDate.toISOString(),
       text: message,
     };
-    console.log(newMessage);
-    console.log(dayjs(newMessage.time).format("DD.MM.YYYY"));
+    // console.log(newMessage);
+    // console.log(dayjs(newMessage.time).format("DD.MM.YYYY"));
     activeUser = userJsonData.find(
       (item) => item.id.toString() === activeUserId
     );
     activeUser.messages.push(newMessage);
     let activeUserLastMessage = activeUser.messages.slice(-1);
-    console.log(dayjs(activeUserLastMessage[0].time).format("DD.MM.YYYY"));
+    // console.log(dayjs(activeUserLastMessage[0].time).format("DD.MM.YYYY"));
     // const lastMessageDate =
 
     const time = `${currentHours}:${currentMins}`;
@@ -244,6 +243,13 @@ btnSend.addEventListener("click", function () {
 
     appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
 
+    //this lines bellow insert all messages again (think so)
+
+    const groupedMessagesByDate = groupMessagesByDate(activeUser.messages);
+
+    // console.log(groupedMessagesByDate);
+    renderMessagesInContainer(groupedMessagesByDate, activeUserId);
+
     // clear message
     sendMessageInput.value = "";
 
@@ -255,6 +261,7 @@ btnSend.addEventListener("click", function () {
   appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
 
   // active user goes on top of chat history
+
   let content = document.querySelector(".app-window__info.active");
   let parent = content.parentNode;
   parent.insertBefore(content, parent.firstChild);
