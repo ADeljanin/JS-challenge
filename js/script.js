@@ -14,7 +14,6 @@ const btnBack = document.querySelector(".btn-arrow");
 const messagesDate = document.querySelector(".day-date-message");
 const appSend = document.querySelectorAll(".app-window__send");
 const sendMessageInput = document.getElementById("typing");
-
 const weekday = [
   "Sunday",
   "Monday",
@@ -57,7 +56,7 @@ fetch("chat.json")
     alert(err);
   });
 
-/////////////// ALL USERS TO THE CHAT LIST ///////////////
+/////////////// ADD ALL USERS TO THE CHAT LIST ///////////////
 function addUsersToTheChatList(users) {
   let allUsersHtml = "";
   // List of all usernames
@@ -157,6 +156,7 @@ function groupMessagesByDate(userMessages) {
 
   return groupedMessagesByDate;
 }
+
 function getReceivedMessageTemplate(message, time, username) {
   return `
     <div class="app-window__one-message-${message.type}">
@@ -187,11 +187,10 @@ function getSentMessageTemplate(message, time) {
     </div>`;
 }
 
-///////////////////////// SEARCH BAR ///////////////////////////////
+///////////////////////// SEARCH BAR ////////////////////////////
 
 searchInput.addEventListener("keyup", function (e) {
   const searchString = e.target.value.toLowerCase();
-
   const filteredUserJsonData = userJsonData.filter((item) => {
     return item.name.toLowerCase().includes(searchString);
   });
@@ -199,6 +198,15 @@ searchInput.addEventListener("keyup", function (e) {
 });
 
 ////////////////////// SEND BUTTON ////////////////////////////
+btnSend.disabled = true;
+
+sendMessageInput.addEventListener("keyup", function () {
+  btnSend.disabled = false;
+  if (sendMessageInput.value != "") {
+    btnSend.style.backgroundColor = "rgb(252, 170, 170)";
+    btnSend.style.transition = "all 1s";
+  }
+});
 
 btnSend.addEventListener("click", function () {
   let message = sendMessageInput.value;
@@ -218,15 +226,11 @@ btnSend.addEventListener("click", function () {
       time: currentDate.toISOString(),
       text: message,
     };
-    // console.log(newMessage);
-    // console.log(dayjs(newMessage.time).format("DD.MM.YYYY"));
     activeUser = userJsonData.find(
       (item) => item.id.toString() === activeUserId
     );
     activeUser.messages.push(newMessage);
     let activeUserLastMessage = activeUser.messages.slice(-1);
-    // console.log(dayjs(activeUserLastMessage[0].time).format("DD.MM.YYYY"));
-    // const lastMessageDate =
 
     let newHtml = "";
 
@@ -241,11 +245,8 @@ btnSend.addEventListener("click", function () {
 
     appSentRecieved.insertAdjacentHTML("beforeend", newHtml);
 
-    //this lines bellow insert all messages again (think so)
-
     const groupedMessagesByDate = groupMessagesByDate(activeUser.messages);
 
-    // console.log(groupedMessagesByDate);
     renderMessagesInContainer(groupedMessagesByDate, activeUserId);
 
     // clear message
@@ -259,12 +260,12 @@ btnSend.addEventListener("click", function () {
   appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
 
   // active user goes on top of chat history
-
   let content = document.querySelector(".app-window__info.active");
   let parent = content.parentNode;
   parent.insertBefore(content, parent.firstChild);
-
   addActiveUserChangeAnimation(content);
+  btnSend.disabled = true;
+  btnSend.style.backgroundColor = "rgb(133, 133, 133)";
 });
 
 function addActiveUserChangeAnimation(content) {
@@ -301,18 +302,13 @@ function focusOnActiveUser() {
   }
 }
 
-// apply this in css file
 /////////////// RESPONSIVE DESIGN ////////////////////////
-
-if (window.matchMedia("(max-width: 600px)").matches) {
-  btnBack.classList.remove("hide");
-}
 
 window.addEventListener("resize", function () {
   if (window.innerWidth > 600) {
     userContainer.classList.remove("hide");
-    appMessages.classList.remove("show");
     btnBack.classList.add("hide");
+    //this 2 lines have to stay because earlier we add classes on button click
   }
 });
 window.addEventListener("resize", function () {
