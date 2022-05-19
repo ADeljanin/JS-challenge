@@ -1,5 +1,7 @@
 "use strict";
 
+///////////////////// GLOBAL VARIABLES //////////////////////
+
 const appUsers = document.querySelector(".app-window__users");
 const appInfo = document.querySelectorAll(".app-window__info");
 const userContainer = document.querySelector(".app-window__left");
@@ -113,6 +115,7 @@ function onUserClick(userId, element) {
   appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
 
   children = appSentRecieved.childNodes.length;
+  btnSend.disabled = true;
 }
 
 function renderMessagesInContainer(groupedMessagesByDate, userId) {
@@ -197,9 +200,7 @@ searchInput.addEventListener("keyup", function (e) {
   addUsersToTheChatList(filteredUserJsonData);
 });
 
-////////////////////// SEND BUTTON ////////////////////////////
-btnSend.disabled = true;
-
+//////////////////////////// INPUT MESSAGE /////////////////////
 sendMessageInput.addEventListener("keyup", function () {
   btnSend.disabled = false;
   if (sendMessageInput.value != "") {
@@ -208,6 +209,7 @@ sendMessageInput.addEventListener("keyup", function () {
   }
 });
 
+////////////////////// SEND BUTTON ////////////////////////////
 btnSend.addEventListener("click", function () {
   let message = sendMessageInput.value;
   if (message.length) {
@@ -283,7 +285,6 @@ function addActiveUserChangeAnimation(content) {
 }
 
 ////////////////////// BACK BUTTON ////////////////////
-
 btnBack.addEventListener("click", function () {
   userContainer.classList.remove("hide");
   appMessages.classList.remove("show");
@@ -302,7 +303,8 @@ function focusOnActiveUser() {
   }
 }
 
-/////////////// RESPONSIVE DESIGN ////////////////////////
+//////////////////////////////////////////////////////////
+/// RESPONSIVE DESIGN - CHANGES MADE BY addEventListener//
 
 window.addEventListener("resize", function () {
   if (window.innerWidth > 600) {
