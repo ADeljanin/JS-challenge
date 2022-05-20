@@ -47,16 +47,23 @@ let activeUserId;
 let children;
 let editedChildren;
 
-fetch("chat.json")
-  .then((response) => response.json())
-  .then((data) => {
-    userJsonData = data;
-    filteredUserJsonData = [...data];
-    addUsersToTheChatList(filteredUserJsonData);
-  })
-  .catch(function (err) {
-    alert(err);
-  });
+let fileName = "chat.json";
+
+///////////////////////////// GET ALL THE DATA //////////////////////
+getData(fileName);
+
+function getData(fileName) {
+  fetch(fileName)
+    .then((response) => response.json())
+    .then((data) => {
+      userJsonData = data;
+      filteredUserJsonData = [...data];
+      addUsersToTheChatList(filteredUserJsonData);
+    })
+    .catch(function (err) {
+      alert(err);
+    });
+}
 
 /////////////// ADD ALL USERS TO THE CHAT LIST ///////////////
 function addUsersToTheChatList(users) {
@@ -86,7 +93,6 @@ function addUsersToTheChatList(users) {
 }
 
 //////////////////// CLICK ON USER //////////////////////////
-
 function onUserClick(userId, element) {
   activeUserId = userId;
   activeUser = userJsonData.find((item) => item.id.toString() === activeUserId);
@@ -107,7 +113,7 @@ function onUserClick(userId, element) {
   const groupedMessagesByDate = groupMessagesByDate(userMessages);
   renderMessagesInContainer(groupedMessagesByDate, userId);
 
-  // this is on click event, so it is done in JS file
+  // adding some style on user click
   if (window.matchMedia("(max-width: 600px)").matches) {
     userContainer.classList.add("hide");
     appMessages.classList.add("show");
@@ -268,6 +274,7 @@ btnSend.addEventListener("click", function () {
   addActiveUserChangeAnimation(content);
   btnSend.disabled = true;
   btnSend.style.backgroundColor = "rgb(133, 133, 133)";
+  focusOnActiveUser();
 });
 
 function addActiveUserChangeAnimation(content) {
@@ -310,10 +317,7 @@ window.addEventListener("resize", function () {
   if (window.innerWidth > 600) {
     userContainer.classList.remove("hide");
     btnBack.classList.add("hide");
-    //this 2 lines have to stay because earlier we add classes on button click
   }
-});
-window.addEventListener("resize", function () {
   if (window.innerWidth < 600) {
     btnBack.classList.remove("hide");
   }
