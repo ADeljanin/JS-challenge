@@ -218,6 +218,27 @@ sendMessageInput.addEventListener("keyup", function () {
 ////////////////////// SEND BUTTON ////////////////////////////
 btnSend.addEventListener("click", function () {
   let message = sendMessageInput.value;
+  sendNewMessage(message);
+
+  // clear message
+  sendMessageInput.value = "";
+  //add message to the left of the screen, just bellow the user name
+  document.querySelector(".app-window__info.active p").textContent = message;
+
+  // scroll to the last message in chat history
+  appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
+
+  // active user goes on top of chat history
+  let content = document.querySelector(".app-window__info.active");
+  let parent = content.parentNode;
+  parent.insertBefore(content, parent.firstChild);
+  addActiveUserChangeAnimation(content);
+  btnSend.disabled = true;
+  btnSend.style.backgroundColor = "rgb(133, 133, 133)";
+  focusOnActiveUser();
+});
+
+function sendNewMessage(message) {
   if (message.length) {
     let currentDate = new Date();
     let currentYear = currentDate.getFullYear();
@@ -256,26 +277,8 @@ btnSend.addEventListener("click", function () {
     const groupedMessagesByDate = groupMessagesByDate(activeUser.messages);
 
     renderMessagesInContainer(groupedMessagesByDate, activeUserId);
-
-    // clear message
-    sendMessageInput.value = "";
-
-    //add message to the left of the screen, just bellow the user name
-    document.querySelector(".app-window__info.active p").textContent = message;
   }
-
-  // scroll to the last message in chat history
-  appSentRecieved.scrollTop = appSentRecieved.scrollHeight;
-
-  // active user goes on top of chat history
-  let content = document.querySelector(".app-window__info.active");
-  let parent = content.parentNode;
-  parent.insertBefore(content, parent.firstChild);
-  addActiveUserChangeAnimation(content);
-  btnSend.disabled = true;
-  btnSend.style.backgroundColor = "rgb(133, 133, 133)";
-  focusOnActiveUser();
-});
+}
 
 function addActiveUserChangeAnimation(content) {
   const userBubble = [{ transform: "scale(1.1)" }, { transform: "scale(1)" }];
