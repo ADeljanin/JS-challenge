@@ -312,6 +312,10 @@ main {
   color: white;
   box-shadow: 2px 2px 10px rgb(249, 190, 190);
   display: none;
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(250, 158, 158);
+  }
   @include respond(phone) {
     display: inline-block;
   }
@@ -331,3 +335,7 @@ main {
 //  @include respond(tab-port) {
 //             width: 100%;
 //         }
+
+.hover:hover {
+  background: rgb(221, 46, 46);
+}

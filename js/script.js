@@ -122,6 +122,7 @@ function onUserClick(userId, element) {
 
   children = appSentRecieved.childNodes.length;
   btnSend.disabled = true;
+  btnSend.style.cursor = "default";
 }
 
 function renderMessagesInContainer(groupedMessagesByDate, userId) {
@@ -209,9 +210,16 @@ searchInput.addEventListener("keyup", function (e) {
 //////////////////////////// INPUT MESSAGE /////////////////////
 sendMessageInput.addEventListener("keyup", function () {
   btnSend.disabled = false;
+  btnSend.style.cursor = "pointer";
+
   if (sendMessageInput.value != "") {
     btnSend.style.backgroundColor = "rgb(252, 170, 170)";
     btnSend.style.transition = "all 1s";
+  }
+  if (sendMessageInput.value === "") {
+    btnSend.disabled = true;
+    btnSend.style.backgroundColor = "rgb(133, 133, 133)";
+    btnSend.style.cursor = "default";
   }
 });
 
